@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MediFlow Central | Patient Profile</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Manrope:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error-container": "#ffdad6",
+                    "on-secondary-container": "#007070",
+                    "error": "#ba1a1a",
+                    "secondary-fixed": "#8cf3f3",
+                    "secondary-container": "#8cf3f3",
+                    "on-tertiary-fixed-variant": "#43474b",
+                    "primary-fixed-dim": "#a7c8ff",
+                    "tertiary-fixed-dim": "#c3c7cb",
+                    "surface-container-lowest": "#ffffff",
+                    "on-surface-variant": "#424751",
+                    "on-secondary-fixed-variant": "#004f4f",
+                    "on-error": "#ffffff",
+                    "inverse-surface": "#263142",
+                    "surface": "#f9f9ff",
+                    "tertiary": "#42474b",
+                    "secondary-fixed-dim": "#6fd7d6",
+                    "inverse-primary": "#a7c8ff",
+                    "surface-container-low": "#f0f3ff",
+                    "on-primary-container": "#c4d9ff",
+                    "background": "#f9f9ff",
+                    "surface-dim": "#cfdaf1",
+                    "surface-bright": "#f9f9ff",
+                    "surface-tint": "#0e5eaf",
+                    "on-tertiary-fixed": "#171c1f",
+                    "surface-container-high": "#dee8ff",
+                    "on-primary-fixed": "#001b3c",
+                    "secondary": "#006a6a",
+                    "outline": "#727783",
+                    "surface-container-highest": "#d8e3fa",
+                    "on-primary-fixed-variant": "#004788",
+                    "inverse-on-surface": "#ebf1ff",
+                    "primary-fixed": "#d5e3ff",
+                    "on-surface": "#111c2c",
+                    "on-secondary": "#ffffff",
+                    "primary": "#004688",
+                    "on-tertiary-container": "#d5d9dd",
+                    "surface-container": "#e7eeff",
+                    "outline-variant": "#c2c6d3",
+                    "tertiary-container": "#5a5f62",
+                    "on-error-container": "#93000a",
+                    "primary-container": "#0d5eaf",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed": "#dfe3e7",
+                    "on-background": "#111c2c",
+                    "on-secondary-fixed": "#002020",
+                    "on-primary": "#ffffff",
+                    "surface-variant": "#d8e3fa"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin": "32px",
+                    "sm": "12px",
+                    "gutter": "24px",
+                    "xs": "4px",
+                    "xl": "64px",
+                    "base": "8px",
+                    "lg": "40px",
+                    "md": "24px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Manrope"],
+                    "body-sm": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-lg": ["Manrope"],
+                    "display-lg": ["Manrope"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "14px", "fontWeight": "500"}],
+                    "label-md": ["14px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #f9f9ff;
+            color: #111c2c;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .vitals-chart-bg {
+            background-image: linear-gradient(to right, #e7eeff 1px, transparent 1px), linear-gradient(to bottom, #e7eeff 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-[280px] bg-surface border-r border-outline-variant flex flex-col py-md z-50">
+<div class="px-6 mb-8">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">MediFlow</h1>
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Clinical Portal</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface mx-2 px-4 py-3 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined mr-3">dashboard</span>
+<span class="font-body-md">Dashboard</span>
+</a>
+<a class="flex items-center bg-primary-container text-on-primary-container font-semibold rounded-lg mx-2 px-4 py-3" href="#">
+<span class="material-symbols-outlined mr-3" style="font-variation-settings: 'FILL' 1;">group</span>
+<span class="font-body-md">Patients</span>
+</a>
+<a class="flex items-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface mx-2 px-4 py-3 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined mr-3">calendar_today</span>
+<span class="font-body-md">Appointments</span>
+</a>
+<a class="flex items-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface mx-2 px-4 py-3 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined mr-3">payments</span>
+<span class="font-body-md">Billing</span>
+</a>
+<a class="flex items-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface mx-2 px-4 py-3 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined mr-3">analytics</span>
+<span class="font-body-md">Reports</span>
+</a>
+<a class="flex items-center text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface mx-2 px-4 py-3 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined mr-3">settings</span>
+<span class="font-body-md">Settings</span>
+</a>
+</nav>
+<div class="px-4 mb-6">
+<button class="w-full bg-primary text-on-primary font-label-md text-label-md py-3 rounded-xl flex items-center justify-center gap-2 active:scale-[0.98] transition-transform">
+<span class="material-symbols-outlined">add</span>
+                New Appointment
+            </button>
+</div>
+<div class="mt-auto pt-4 border-t border-outline-variant mx-4">
+<a class="flex items-center text-on-surface-variant hover:text-primary transition-colors py-2" href="#">
+<span class="material-symbols-outlined mr-3">help</span>
+<span class="font-body-sm">Help Center</span>
+</a>
+<a class="flex items-center text-on-surface-variant hover:text-error transition-colors py-2" href="#">
+<span class="material-symbols-outlined mr-3">logout</span>
+<span class="font-body-sm">Logout</span>
+</a>
+</div>
+</aside>
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 w-[calc(100%-280px)] h-16 bg-surface border-b border-outline-variant flex justify-between items-center px-md z-40">
+<div class="flex items-center flex-1 max-w-xl">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-full text-body-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none" placeholder="Search patients, records, or labs..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant hover:text-primary relative active:opacity-80 transition-all">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border-2 border-surface"></span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary active:opacity-80 transition-all">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<div class="h-8 w-[1px] bg-outline-variant mx-2"></div>
+<div class="flex items-center gap-3 cursor-pointer group">
+<div class="text-right">
+<p class="text-label-md font-label-md text-on-surface group-hover:text-primary transition-colors">Dr. Julian Vance</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Cardiologist</p>
+</div>
+<img class="w-10 h-10 rounded-full border border-outline-variant object-cover" data-alt="A professional headshot of a middle-aged male doctor with a kind expression, wearing a crisp white medical coat and a stethoscope around his neck. The lighting is soft and professional, set against a clean, out-of-focus clinical environment with soft blues and whites. The overall aesthetic is trustworthy and modern." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqTFb2PF8g_U4FchDrrEmOAJX4018rPJlM5Rn9uYnxFko9MzuLL30wFSC9OIKdICNq69QAzfqA5TxBR0-0UikiRrSL7pQXVZ06h4HXZVkcWmw1gNFNxhP5JwUenuk7Xs2ouCJMFD5m4faT0Snc_1XH7pnTVGEPO6gk6gmvxR0ugHV3nxFGlBPCoHYns3yfRNMgGlGG9RBRKX6aZ0LumD5mf2buVg8Pwp5NQwVsWIgBGlx2CHx4TRzsrA"/>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="ml-[280px] pt-16 min-h-screen">
+<div class="max-w-[1440px] mx-auto p-gutter">
+<!-- Patient Profile Header -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 mb-gutter shadow-sm">
+<div class="flex flex-col lg:flex-row gap-8 items-start">
+<div class="relative">
+<img class="w-32 h-32 rounded-2xl object-cover border-4 border-surface-container-highest" data-alt="A high-resolution portrait of an elderly female patient with gentle eyes and grey hair, wearing a soft pastel blue sweater. The background is a clean, bright medical office with natural light pouring in from a window, creating a serene and supportive atmosphere. The image is framed with a premium, soft-edged professional quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBznHu7Y3GcSN6dx2VA9gemjIGeAzwhecMuta4G8okZGoChVpzQREkOFvbvDYk4pGptFBI3VMkF_tckhB6H9mucPvvO2MTVHM1-fYEH2ER-Wj3TLPnNWKuvnweM_Qam_vR_4WbJzXE0QgWp0Y5P_pERAGK8c4zgBp6K-4u-wd81EhIAO-CHMtDM3UlUMVz5eeWAjqKZKYR0zdlw2JOIoHnvpzrsjTPZQHigv4HwedyVg99766YOm7uC1A"/>
+<div class="absolute -bottom-2 -right-2 bg-green-500 w-6 h-6 rounded-full border-4 border-white"></div>
+</div>
+<div class="flex-1">
+<div class="flex flex-wrap items-center justify-between gap-4 mb-4">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Eleanor M. Sterling</h2>
+<p class="text-body-md text-on-surface-variant">Patient ID: #MS-4492-B • Female • 72 Years</p>
+</div>
+<div class="flex gap-3">
+<button class="px-4 py-2 border-1.5 border-outline-variant rounded-lg font-label-md text-label-md text-on-surface hover:bg-surface-container transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+                                    Edit Profile
+                                </button>
+<button class="px-4 py-2 bg-primary text-on-primary rounded-lg font-label-md text-label-md hover:opacity-90 transition-opacity flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add_notes</span>
+                                    New Note
+                                </button>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="bg-surface-container-low p-3 rounded-lg border border-outline-variant/50">
+<p class="text-label-sm text-on-surface-variant mb-1">Blood Type</p>
+<p class="font-headline-md text-primary">A+</p>
+</div>
+<div class="bg-surface-container-low p-3 rounded-lg border border-outline-variant/50">
+<p class="text-label-sm text-on-surface-variant mb-1">Weight</p>
+<p class="font-headline-md text-primary">64.5 <span class="text-label-md">kg</span></p>
+</div>
+<div class="bg-surface-container-low p-3 rounded-lg border border-outline-variant/50">
+<p class="text-label-sm text-on-surface-variant mb-1">Height</p>
+<p class="font-headline-md text-primary">162 <span class="text-label-md">cm</span></p>
+</div>
+<div class="bg-surface-container-low p-3 rounded-lg border border-outline-variant/50">
+<p class="text-label-sm text-on-surface-variant mb-1">Next Visit</p>
+<p class="font-headline-md text-primary">Oct 12</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Tabs Interface -->
+<div class="border-b border-outline-variant mb-8 flex gap-8">
+<button class="pb-4 text-primary border-b-2 border-primary font-bold text-label-md">Overview</button>
+<button class="pb-4 text-on-surface-variant font-medium text-label-md hover:text-primary transition-colors">Medical History</button>
+<button class="pb-4 text-on-surface-variant font-medium text-label-md hover:text-primary transition-colors">Prescriptions</button>
+<button class="pb-4 text-on-surface-variant font-medium text-label-md hover:text-primary transition-colors">Billing</button>
+<button class="pb-4 text-on-surface-variant font-medium text-label-md hover:text-primary transition-colors">Documents</button>
+</div>
+<!-- Bento Layout Content -->
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Left Column: Vitals & Medications -->
+<div class="col-span-12 lg:col-span-8 space-y-gutter">
+<!-- Vitals Section -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden">
+<div class="p-6 border-b border-outline-variant flex justify-between items-center">
+<h3 class="font-headline-md text-on-surface">Vitals Overview</h3>
+<select class="bg-surface border-outline-variant rounded-lg text-label-sm py-1 px-3">
+<option>Last 7 Days</option>
+<option>Last 30 Days</option>
+</select>
+</div>
+<div class="p-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter mb-8">
+<div class="p-4 rounded-xl bg-[#F0F7FF] border border-primary/10">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">favorite</span>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant">Heart Rate</p>
+<p class="font-headline-md text-primary">72 <span class="text-label-md">bpm</span></p>
+</div>
+</div>
+<div class="h-16 vitals-chart-bg rounded relative overflow-hidden">
+<svg class="absolute inset-0 w-full h-full" viewbox="0 0 400 100">
+<path d="M0,50 L40,50 L50,20 L60,80 L70,50 L110,50 L120,10 L130,90 L140,50 L400,50" fill="none" stroke="#0e5eaf" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+<div class="p-4 rounded-xl bg-[#FFF5F5] border border-error/10">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-10 h-10 rounded-full bg-error-container flex items-center justify-center">
+<span class="material-symbols-outlined text-error">blood_pressure</span>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant">Blood Pressure</p>
+<p class="font-headline-md text-error">138/84 <span class="text-label-md">mmHg</span></p>
+</div>
+</div>
+<div class="h-16 vitals-chart-bg rounded relative overflow-hidden">
+<svg class="absolute inset-0 w-full h-full" viewbox="0 0 400 100">
+<path d="M0,70 Q50,40 100,60 T200,40 T300,50 T400,30" fill="none" stroke="#ba1a1a" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-low p-4 rounded-xl">
+<h4 class="text-label-md mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">analytics</span>
+                                    Clinical Insight
+                                </h4>
+<p class="text-body-sm text-on-surface-variant">Blood pressure shows a slight upward trend over the last 48 hours (+4%). Heart rate remains within the target resting range. Monitor sodium intake for the next 72 hours.</p>
+</div>
+</div>
+</div>
+<!-- Prescribed Medications -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden">
+<div class="p-6 border-b border-outline-variant flex justify-between items-center">
+<h3 class="font-headline-md text-on-surface">Active Medications</h3>
+<button class="text-primary text-label-md hover:underline">+ Add New</button>
+</div>
+<div class="p-6">
+<div class="space-y-4">
+<div class="flex items-center justify-between p-4 bg-surface rounded-xl border border-outline-variant/30 hover:border-primary/30 transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-primary-container/30 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">pill</span>
+</div>
+<div>
+<p class="font-bold text-on-surface">Lisinopril 10mg</p>
+<p class="text-label-sm text-on-surface-variant">Once daily, morning • Hypertension</p>
+</div>
+</div>
+<div class="text-right">
+<span class="px-3 py-1 rounded-full bg-green-100 text-green-700 text-label-sm font-bold">Stable</span>
+<p class="text-label-sm text-on-surface-variant mt-1">Refill: 15 days left</p>
+</div>
+</div>
+<div class="flex items-center justify-between p-4 bg-surface rounded-xl border border-outline-variant/30 hover:border-primary/30 transition-colors">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-primary-container/30 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">pill</span>
+</div>
+<div>
+<p class="font-bold text-on-surface">Metformin 500mg</p>
+<p class="text-label-sm text-on-surface-variant">Twice daily with meals • Type 2 Diabetes</p>
+</div>
+</div>
+<div class="text-right">
+<span class="px-3 py-1 rounded-full bg-yellow-100 text-yellow-700 text-label-sm font-bold">Monitor</span>
+<p class="text-label-sm text-on-surface-variant mt-1">Refill: 42 days left</p>
+</div>
+</div>
+<div class="flex items-center justify-between p-4 bg-surface rounded-xl border border-outline-variant/30 hover:border-primary/30 transition-colors opacity-60">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">pill</span>
+</div>
+<div>
+<p class="font-bold text-on-surface">Amoxicillin 250mg</p>
+<p class="text-label-sm text-on-surface-variant">Course completed • Sinus Infection</p>
+</div>
+</div>
+<div class="text-right">
+<span class="px-3 py-1 rounded-full bg-surface-container text-on-surface-variant text-label-sm font-bold">Ended</span>
+<p class="text-label-sm text-on-surface-variant mt-1">Last dose: Aug 24</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Timeline & Reports -->
+<div class="col-span-12 lg:col-span-4 space-y-gutter">
+<!-- Medical History Timeline -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6">
+<h3 class="font-headline-md text-on-surface mb-6">Recent History</h3>
+<div class="space-y-8 relative before:content-[''] before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-[2px] before:bg-outline-variant">
+<div class="relative pl-10">
+<div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-primary-container border-4 border-surface z-10 flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+</div>
+<p class="text-label-sm font-bold text-primary">SEP 14, 2023</p>
+<p class="font-bold text-on-surface">Cardiology Follow-up</p>
+<p class="text-body-sm text-on-surface-variant">Dr. Vance • Routine stress test and BP review. All markers stable.</p>
+</div>
+<div class="relative pl-10">
+<div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-surface-container border-4 border-surface z-10 flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-outline"></div>
+</div>
+<p class="text-label-sm font-bold text-on-surface-variant">AUG 28, 2023</p>
+<p class="font-bold text-on-surface">Laboratory Screening</p>
+<p class="text-body-sm text-on-surface-variant">Lipid panel and metabolic workup performed at West Wing Lab.</p>
+</div>
+<div class="relative pl-10">
+<div class="absolute left-0 top-1 w-6 h-6 rounded-full bg-surface-container border-4 border-surface z-10 flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-outline"></div>
+</div>
+<p class="text-label-sm font-bold text-on-surface-variant">JUL 02, 2023</p>
+<p class="font-bold text-on-surface">Emergency Admission</p>
+<p class="text-body-sm text-on-surface-variant">Shortness of breath, mild chest discomfort. Observed for 24h.</p>
+</div>
+</div>
+<button class="w-full mt-6 py-2 text-primary font-label-md hover:bg-primary/5 rounded-lg transition-colors">View Full History</button>
+</div>
+<!-- Lab Reports & Documents -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6">
+<h3 class="font-headline-md text-on-surface mb-6">Lab Reports</h3>
+<div class="space-y-3">
+<div class="flex items-center p-3 border border-outline-variant rounded-xl hover:bg-surface transition-colors cursor-pointer group">
+<div class="w-10 h-10 bg-error-container/20 text-error flex items-center justify-center rounded-lg mr-4">
+<span class="material-symbols-outlined">picture_as_pdf</span>
+</div>
+<div class="flex-1 overflow-hidden">
+<p class="font-bold text-on-surface truncate">Lipid_Panel_Q3.pdf</p>
+<p class="text-label-sm text-on-surface-variant">Aug 28 • 1.2 MB</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">download</span>
+</div>
+<div class="flex items-center p-3 border border-outline-variant rounded-xl hover:bg-surface transition-colors cursor-pointer group">
+<div class="w-10 h-10 bg-primary-container/20 text-primary flex items-center justify-center rounded-lg mr-4">
+<span class="material-symbols-outlined">image</span>
+</div>
+<div class="flex-1 overflow-hidden">
+<p class="font-bold text-on-surface truncate">Chest_Xray_Lateral.jpg</p>
+<p class="text-label-sm text-on-surface-variant">Jul 03 • 4.5 MB</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">download</span>
+</div>
+<div class="flex items-center p-3 border border-outline-variant rounded-xl hover:bg-surface transition-colors cursor-pointer group">
+<div class="w-10 h-10 bg-secondary-container/20 text-secondary flex items-center justify-center rounded-lg mr-4">
+<span class="material-symbols-outlined">description</span>
+</div>
+<div class="flex-1 overflow-hidden">
+<p class="font-bold text-on-surface truncate">Discharge_Summary.docx</p>
+<p class="text-label-sm text-on-surface-variant">Jul 04 • 85 KB</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">download</span>
+</div>
+</div>
+<button class="w-full mt-6 border-1.5 border-primary text-primary font-label-md py-2 rounded-xl flex items-center justify-center gap-2 hover:bg-primary/5 transition-colors">
+<span class="material-symbols-outlined text-[20px]">upload</span>
+                            Upload New
+                        </button>
+</div>
+<!-- Care Team Card -->
+<div class="bg-primary text-on-primary rounded-xl p-6 shadow-lg relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16 blur-3xl"></div>
+<h3 class="font-headline-md mb-4 relative z-10">Care Team</h3>
+<div class="space-y-4 relative z-10">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+<span class="material-symbols-outlined">stethoscope</span>
+</div>
+<div>
+<p class="font-bold">Dr. Julian Vance</p>
+<p class="text-label-sm text-primary-fixed-dim">Lead Cardiologist</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+<span class="material-symbols-outlined">medical_services</span>
+</div>
+<div>
+<p class="font-bold">Sarah Jenkins, RN</p>
+<p class="text-label-sm text-primary-fixed-dim">Nurse Coordinator</p>
+</div>
+</div>
+</div>
+<button class="w-full mt-6 bg-white text-primary font-bold py-2 rounded-lg hover:bg-surface-container transition-colors">Contact Team</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action Button - Only for Primary Task -->
+<button class="fixed bottom-8 right-8 w-14 h-14 bg-primary text-on-primary rounded-full shadow-2xl flex items-center justify-center active:scale-90 transition-transform z-50">
+<span class="material-symbols-outlined text-[28px]">chat</span>
+</button>
+<script>
+        // Micro-interactions for tabs
+        const tabs = document.querySelectorAll('.border-b button');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => {
+                    t.classList.remove('text-primary', 'border-b-2', 'border-primary', 'font-bold');
+                    t.classList.add('text-on-surface-variant', 'font-medium');
+                });
+                tab.classList.remove('text-on-surface-variant', 'font-medium');
+                tab.classList.add('text-primary', 'border-b-2', 'border-primary', 'font-bold');
+            });
+        });
+
+        // Hover effect for side nav
+        const navItems = document.querySelectorAll('aside nav a');
+        navItems.forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                if(!item.classList.contains('bg-primary-container')) {
+                    item.style.transform = 'translateX(4px)';
+                }
+            });
+            item.addEventListener('mouseleave', () => {
+                item.style.transform = 'translateX(0px)';
+            });
+        });
+    </script>
+</body></html>

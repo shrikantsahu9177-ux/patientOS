@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>PatientOS - Security & Compliance Audit Logs</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface": "#f9f9ff",
+            "primary": "#004688",
+            "on-primary": "#ffffff",
+            "primary-container": "#0d5eaf",
+            "on-primary-container": "#c4d9ff",
+            "background": "#f9f9ff",
+            "on-background": "#111c2c",
+            "outline-variant": "#c2c6d3",
+            "on-surface-variant": "#424751"
+          }
+        }
+      }
+    }
+  </script>
+  <script>
+    if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+</head>
+<body class="bg-background text-on-background min-h-screen flex dark:bg-gray-900 dark:text-gray-100 transition-colors duration-200">
+
+  <!-- Sidebar Navigation -->
+  <aside class="w-[280px] bg-surface border-r border-outline-variant flex flex-col h-screen fixed left-0 top-0 z-20 dark:bg-gray-800 dark:border-gray-700">
+    <div class="p-6 flex items-center gap-3 border-b border-outline-variant dark:border-gray-700">
+      <div class="p-2 bg-primary text-on-primary rounded-xl flex items-center justify-center">
+        <span class="material-symbols-outlined text-2xl">local_hospital</span>
+      </div>
+      <div>
+        <h1 class="font-headline font-bold text-lg text-primary dark:text-blue-400">PatientOS</h1>
+        <p class="text-xs text-on-surface-variant dark:text-gray-400">Enterprise Health Suite</p>
+      </div>
+    </div>
+    
+    <nav class="flex-1 space-y-1 p-3 overflow-y-auto">
+      <a class="text-on-surface-variant hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-700 px-4 py-3 rounded-lg flex items-center gap-3 text-sm" href="dashboard.html">
+        <span class="material-symbols-outlined">dashboard</span>
+        <span>Dashboard</span>
+      </a>
+      <a class="text-on-surface-variant hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-700 px-4 py-3 rounded-lg flex items-center gap-3 text-sm" href="patients.html">
+        <span class="material-symbols-outlined">group</span>
+        <span>Patients</span>
+      </a>
+      <a class="text-on-surface-variant hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-700 px-4 py-3 rounded-lg flex items-center gap-3 text-sm" href="appointments.html">
+        <span class="material-symbols-outlined">calendar_today</span>
+        <span>Appointments</span>
+      </a>
+      <a class="text-on-surface-variant hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-700 px-4 py-3 rounded-lg flex items-center gap-3 text-sm" href="billing.html">
+        <span class="material-symbols-outlined">payments</span>
+        <span>Billing</span>
+      </a>
+      <a class="text-on-surface-variant hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-700 px-4 py-3 rounded-lg flex items-center gap-3 text-sm" href="bed_management.html">
+        <span class="material-symbols-outlined">bed</span>
+        <span>Bed Management</span>
+      </a>
+      <a class="text-on-surface-variant hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-700 px-4 py-3 rounded-lg flex items-center gap-3 text-sm" href="emergency.html">
+        <span class="material-symbols-outlined text-red-500">warning</span>
+        <span>Emergency Triage</span>
+      </a>
+      <a class="bg-primary-container text-on-primary-container font-semibold rounded-lg px-4 py-3 flex items-center gap-3 text-sm dark:bg-blue-600 dark:text-white" href="audit_logs.html">
+        <span class="material-symbols-outlined">security</span>
+        <span>Audit & Compliance</span>
+      </a>
+      <a class="text-on-surface-variant hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-700 px-4 py-3 rounded-lg flex items-center gap-3 text-sm" href="settings.html">
+        <span class="material-symbols-outlined">settings</span>
+        <span>Settings</span>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="ml-[280px] w-[calc(100%-280px)] min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="h-16 flex justify-between items-center px-8 bg-surface border-b border-outline-variant sticky top-0 z-10 dark:bg-gray-800 dark:border-gray-700">
+      <div class="flex items-center gap-3">
+        <span class="material-symbols-outlined text-primary dark:text-blue-400">verified_user</span>
+        <h1 class="text-xl font-bold dark:text-white">Security & Audit Compliance Center</h1>
+      </div>
+      <div class="flex items-center gap-4">
+        <button onclick="exportLogs()" class="px-4 py-2 bg-emerald-600 text-white rounded-xl text-sm font-semibold flex items-center gap-2 hover:bg-emerald-700">
+          <span class="material-symbols-outlined text-sm">download</span> Export Audit CSV
+        </button>
+      </div>
+    </header>
+
+    <div class="p-8 max-w-[1400px] w-full mx-auto space-y-6">
+      
+      <!-- Compliance Overview Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div class="p-5 bg-surface dark:bg-gray-800 border border-outline-variant dark:border-gray-700 rounded-2xl">
+          <div class="flex items-center justify-between text-emerald-600 mb-2">
+            <span class="material-symbols-outlined">verified</span>
+            <span class="text-xs bg-emerald-100 dark:bg-emerald-950 px-2 py-0.5 rounded-full font-bold">100% Compliant</span>
+          </div>
+          <h4 class="text-xs uppercase text-gray-500 dark:text-gray-400 font-semibold">HIPAA Compliance Score</h4>
+          <p class="text-3xl font-bold mt-1 dark:text-white">99.8%</p>
+        </div>
+
+        <div class="p-5 bg-surface dark:bg-gray-800 border border-outline-variant dark:border-gray-700 rounded-2xl">
+          <div class="flex items-center justify-between text-blue-600 mb-2">
+            <span class="material-symbols-outlined">history</span>
+            <span class="text-xs bg-blue-100 dark:bg-blue-950 px-2 py-0.5 rounded-full font-bold">24 Hours</span>
+          </div>
+          <h4 class="text-xs uppercase text-gray-500 dark:text-gray-400 font-semibold">Total Logged Access Events</h4>
+          <p class="text-3xl font-bold mt-1 dark:text-white">4,819</p>
+        </div>
+
+        <div class="p-5 bg-surface dark:bg-gray-800 border border-outline-variant dark:border-gray-700 rounded-2xl">
+          <div class="flex items-center justify-between text-amber-600 mb-2">
+            <span class="material-symbols-outlined">gpp_maybe</span>
+            <span class="text-xs bg-amber-100 dark:bg-amber-950 px-2 py-0.5 rounded-full font-bold">Flagged</span>
+          </div>
+          <h4 class="text-xs uppercase text-gray-500 dark:text-gray-400 font-semibold">Failed Authentication Attempts</h4>
+          <p class="text-3xl font-bold mt-1 text-amber-600">3</p>
+        </div>
+
+        <div class="p-5 bg-surface dark:bg-gray-800 border border-outline-variant dark:border-gray-700 rounded-2xl">
+          <div class="flex items-center justify-between text-purple-600 mb-2">
+            <span class="material-symbols-outlined">admin_panel_settings</span>
+            <span class="text-xs bg-purple-100 dark:bg-purple-950 px-2 py-0.5 rounded-full font-bold">Active</span>
+          </div>
+          <h4 class="text-xs uppercase text-gray-500 dark:text-gray-400 font-semibold">Active Authorized Staff</h4>
+          <p class="text-3xl font-bold mt-1 dark:text-white">42</p>
+        </div>
+      </div>
+
+      <!-- Filters Bar -->
+      <div class="p-4 bg-surface dark:bg-gray-800 border border-outline-variant dark:border-gray-700 rounded-2xl flex flex-wrap items-center justify-between gap-4">
+        <div class="flex items-center gap-4 flex-1 min-w-[280px]">
+          <div class="relative w-full">
+            <span class="material-symbols-outlined absolute left-3 top-2.5 text-gray-400 text-sm">search</span>
+            <input type="text" id="log-search" oninput="filterLogs()" placeholder="Search logs by staff name, action, IP, or record ID..." class="w-full pl-9 pr-4 py-2 border rounded-xl text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white"/>
+          </div>
+        </div>
+        
+        <div class="flex gap-3">
+          <select id="severity-filter" onchange="filterLogs()" class="px-3 py-2 border rounded-xl text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white">
+            <option value="ALL">All Severity Levels</option>
+            <option value="INFO">INFO</option>
+            <option value="WARNING">WARNING</option>
+            <option value="CRITICAL">CRITICAL</option>
+          </select>
+
+          <select id="action-filter" onchange="filterLogs()" class="px-3 py-2 border rounded-xl text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white">
+            <option value="ALL">All Event Actions</option>
+            <option value="RECORD_VIEW">Patient Record View</option>
+            <option value="PRESCRIPTION_EDIT">Prescription Modification</option>
+            <option value="BED_ASSIGN">Bed Assignment</option>
+            <option value="LOGIN">User Login</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Audit Logs Table -->
+      <div class="bg-surface dark:bg-gray-800 border border-outline-variant dark:border-gray-700 rounded-2xl overflow-hidden shadow-sm">
+        <table class="w-full text-left text-sm">
+          <thead class="bg-gray-100 dark:bg-gray-900 border-b border-outline-variant dark:border-gray-700 text-xs uppercase text-gray-500 dark:text-gray-400">
+            <tr>
+              <th class="p-4">Timestamp</th>
+              <th class="p-4">User & Role</th>
+              <th class="p-4">Event Action</th>
+              <th class="p-4">Resource / Patient ID</th>
+              <th class="p-4">IP Address</th>
+              <th class="p-4">Severity</th>
+              <th class="p-4">Status</th>
+            </tr>
+          </thead>
+          <tbody id="log-table-body" class="divide-y divide-gray-200 dark:divide-gray-700">
+            <tr class="log-row hover:bg-gray-50 dark:hover:bg-gray-750">
+              <td class="p-4 font-mono text-xs text-gray-500 dark:text-gray-400">2026-07-28 21:48:12</td>
+              <td class="p-4">
+                <p class="font-bold text-gray-900 dark:text-white">Dr. Sarah Mitchell</p>
+                <p class="text-xs text-gray-500">Chief Surgeon</p>
+              </td>
+              <td class="p-4 font-medium text-blue-600 dark:text-blue-400">RECORD_VIEW</td>
+              <td class="p-4 font-mono text-xs">PAT-9402 (John Doe)</td>
+              <td class="p-4 font-mono text-xs text-gray-500">192.168.1.104</td>
+              <td class="p-4"><span class="px-2.5 py-1 bg-blue-100 text-blue-800 dark:bg-blue-950 dark:text-blue-300 text-xs rounded-full font-bold">INFO</span></td>
+              <td class="p-4 text-emerald-600 font-semibold text-xs flex items-center gap-1"><span class="material-symbols-outlined text-sm">check_circle</span> SUCCESS</td>
+            </tr>
+
+            <tr class="log-row hover:bg-gray-50 dark:hover:bg-gray-750">
+              <td class="p-4 font-mono text-xs text-gray-500 dark:text-gray-400">2026-07-28 21:42:00</td>
+              <td class="p-4">
+                <p class="font-bold text-gray-900 dark:text-white">Nurse Emily Davis</p>
+                <p class="text-xs text-gray-500">ICU Specialist</p>
+              </td>
+              <td class="p-4 font-medium text-purple-600 dark:text-purple-400">BED_ASSIGN</td>
+              <td class="p-4 font-mono text-xs">BED-ICU-02</td>
+              <td class="p-4 font-mono text-xs text-gray-500">192.168.1.118</td>
+              <td class="p-4"><span class="px-2.5 py-1 bg-blue-100 text-blue-800 dark:bg-blue-950 dark:text-blue-300 text-xs rounded-full font-bold">INFO</span></td>
+              <td class="p-4 text-emerald-600 font-semibold text-xs flex items-center gap-1"><span class="material-symbols-outlined text-sm">check_circle</span> SUCCESS</td>
+            </tr>
+
+            <tr class="log-row hover:bg-gray-50 dark:hover:bg-gray-750 bg-amber-50/50 dark:bg-amber-950/20">
+              <td class="p-4 font-mono text-xs text-gray-500 dark:text-gray-400">2026-07-28 21:30:15</td>
+              <td class="p-4">
+                <p class="font-bold text-gray-900 dark:text-white">Unknown Attempt</p>
+                <p class="text-xs text-amber-600">Unauthenticated</p>
+              </td>
+              <td class="p-4 font-medium text-amber-600">LOGIN_FAILED</td>
+              <td class="p-4 font-mono text-xs">SYS_AUTH_PORTAL</td>
+              <td class="p-4 font-mono text-xs text-gray-500">10.0.4.92</td>
+              <td class="p-4"><span class="px-2.5 py-1 bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300 text-xs rounded-full font-bold">WARNING</span></td>
+              <td class="p-4 text-red-600 font-semibold text-xs flex items-center gap-1"><span class="material-symbols-outlined text-sm">cancel</span> BLOCKED</td>
+            </tr>
+
+            <tr class="log-row hover:bg-gray-50 dark:hover:bg-gray-750">
+              <td class="p-4 font-mono text-xs text-gray-500 dark:text-gray-400">2026-07-28 20:15:44</td>
+              <td class="p-4">
+                <p class="font-bold text-gray-900 dark:text-white">Billing Officer James</p>
+                <p class="text-xs text-gray-500">Finance Team</p>
+              </td>
+              <td class="p-4 font-medium text-emerald-600">INVOICE_CREATE</td>
+              <td class="p-4 font-mono text-xs">INV-2026-8812 ($1,450.00)</td>
+              <td class="p-4 font-mono text-xs text-gray-500">192.168.1.201</td>
+              <td class="p-4"><span class="px-2.5 py-1 bg-blue-100 text-blue-800 dark:bg-blue-950 dark:text-blue-300 text-xs rounded-full font-bold">INFO</span></td>
+              <td class="p-4 text-emerald-600 font-semibold text-xs flex items-center gap-1"><span class="material-symbols-outlined text-sm">check_circle</span> SUCCESS</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    function filterLogs() {
+      const q = document.getElementById('log-search').value.toLowerCase();
+      const sev = document.getElementById('severity-filter').value;
+      const rows = document.querySelectorAll('.log-row');
+      
+      rows.forEach(row => {
+        const text = row.innerText.toLowerCase();
+        const matchesQuery = text.includes(q);
+        const matchesSev = sev === 'ALL' || text.includes(sev.toLowerCase());
+        row.style.display = (matchesQuery && matchesSev) ? '' : 'none';
+      });
+    }
+
+    function exportLogs() {
+      alert('Generating HIPAA compliant audit log CSV export...');
+    }
+  </script>
+</body>
+</html>

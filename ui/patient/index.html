@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% set active = 'patients' %}
+{% block title %}Patients{% endblock %}
+{% block page_title %}Patient Records{% endblock %}
+{% block content %}
+
+<div class="max-w-6xl mx-auto">
+  <!-- Header -->
+  <div class="flex items-center justify-between mb-8">
+    <div>
+      <h2 class="text-2xl font-bold text-on-surface" style="font-family:Manrope">All Patients</h2>
+      <p class="text-on-surface-variant text-sm mt-1">{{ patients|length }} patient(s) registered</p>
+    </div>
+    <a href="/patients/add" class="flex items-center gap-2 px-6 py-2.5 bg-primary text-on-primary font-semibold rounded-xl shadow hover:opacity-90 transition-all transform hover:-translate-y-0.5">
+      <span class="material-symbols-outlined text-[20px]">person_add</span> Register Patient
+    </a>
+  </div>
+
+  {% if patients %}
+  <div class="bg-surface rounded-2xl border border-outline-variant shadow-sm overflow-hidden">
+    <table class="w-full">
+      <thead class="bg-surface-container-low">
+        <tr>
+          <th class="px-6 py-3 text-left text-xs font-semibold text-on-surface-variant uppercase tracking-wider">#</th>
+          <th class="px-6 py-3 text-left text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Name</th>
+          <th class="px-6 py-3 text-left text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Age / Gender</th>
+          <th class="px-6 py-3 text-left text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Phone</th>
+          <th class="px-6 py-3 text-left text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Blood Type</th>
+          <th class="px-6 py-3 text-left text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Status</th>
+          <th class="px-6 py-3 text-left text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Actions</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-outline-variant">
+        {% for patient in patients %}
+        <tr class="hover:bg-surface-container-low transition-colors">
+          <td class="px-6 py-4 text-xs text-on-surface-variant">{{ loop.index }}</td>
+          <td class="px-6 py-4">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-full bg-primary flex items-center justify-center flex-shrink-0">
+                <span class="text-on-primary text-sm font-bold">{{ patient.name[0].upper() }}</span>
+              </div>
+              <div>
+                <p class="font-semibold text-on-surface">{{ patient.name }}</p>
+                <p class="text-xs text-on-surface-variant">{{ patient.email }}</p>
+              </div>
+            </div>
+          </td>
+          <td class="px-6 py-4 text-on-surface-variant">{{ patient.age }} yrs / {{ patient.gender }}</td>
+          <td class="px-6 py-4 text-on-surface-variant">{{ patient.phone }}</td>
+          <td class="px-6 py-4">
+            {% if patient.blood_type %}
+              <span class="px-2 py-1 text-xs font-bold rounded-full bg-error-container text-on-error-container">{{ patient.blood_type }}</span>
+            {% else %}<span class="text-on-surface-variant text-xs">—</span>{% endif %}
+          </td>
+          <td class="px-6 py-4">
+            <span class="px-3 py-1 text-xs font-semibold rounded-full bg-secondary-container text-on-secondary-container">{{ patient.status }}</span>
+          </td>
+          <td class="px-6 py-4">
+            <form method="POST" action="/patients/delete/{{ patient.id }}" onsubmit="return confirm('Remove {{ patient.name }}?')">
+              <button type="submit" class="p-2 text-error hover:bg-error-container rounded-lg transition-colors">
+                <span class="material-symbols-outlined text-[18px]">delete</span>
+              </button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  {% else %}
+  <div class="bg-surface rounded-2xl border border-outline-variant shadow-sm flex flex-col items-center justify-center py-24 text-center">
+    <span class="material-symbols-outlined text-6xl text-on-surface-variant mb-4">group_off</span>
+    <h3 class="text-xl font-bold text-on-surface-variant mb-2" style="font-family:Manrope">No Patients Yet</h3>
+    <p class="text-sm text-on-surface-variant mb-6 max-w-xs">Register your first patient to get started with PatientOS.</p>
+    <a href="/patients/add" class="px-6 py-3 bg-primary text-on-primary font-semibold rounded-xl hover:opacity-90 flex items-center gap-2">
+      <span class="material-symbols-outlined text-[20px]">person_add</span> Register First Patient
+    </a>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

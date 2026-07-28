@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% set active = 'doctors' %}
+{% block title %}Doctors{% endblock %}
+{% block page_title %}Doctor Registry{% endblock %}
+{% block content %}
+
+<div class="max-w-6xl mx-auto">
+  <div class="flex items-center justify-between mb-8">
+    <div>
+      <h2 class="text-2xl font-bold text-on-surface" style="font-family:Manrope">All Doctors</h2>
+      <p class="text-on-surface-variant text-sm mt-1">{{ doctors|length }} doctor(s) registered</p>
+    </div>
+    <a href="/doctors/add" class="flex items-center gap-2 px-6 py-2.5 bg-secondary text-on-secondary font-semibold rounded-xl shadow hover:opacity-90 transition-all transform hover:-translate-y-0.5">
+      <span class="material-symbols-outlined text-[20px]">medical_services</span> Register Doctor
+    </a>
+  </div>
+
+  {% if doctors %}
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {% for doctor in doctors %}
+    <div class="bg-surface rounded-2xl border border-outline-variant shadow-sm hover:shadow-md transition-shadow p-6">
+      <div class="flex items-start justify-between mb-4">
+        <div class="flex items-center gap-4">
+          <div class="w-14 h-14 rounded-2xl bg-secondary flex items-center justify-center flex-shrink-0">
+            <span class="text-on-secondary text-xl font-bold">{{ doctor.name[0].upper() }}</span>
+          </div>
+          <div>
+            <p class="font-bold text-on-surface text-base">Dr. {{ doctor.name }}</p>
+            <p class="text-xs font-medium text-primary">{{ doctor.specialty }}</p>
+          </div>
+        </div>
+        <form method="POST" action="/doctors/delete/{{ doctor.id }}" onsubmit="return confirm('Remove Dr. {{ doctor.name }}?')">
+          <button type="submit" class="p-1.5 text-error hover:bg-error-container rounded-lg transition-colors">
+            <span class="material-symbols-outlined text-[18px]">delete</span>
+          </button>
+        </form>
+      </div>
+      {% if doctor.department %}
+        <p class="text-xs text-on-surface-variant mb-3 flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">local_hospital</span> {{ doctor.department }}</p>
+      {% endif %}
+      <div class="space-y-1.5 border-t border-outline-variant pt-3">
+        <p class="text-xs text-on-surface-variant flex items-center gap-1.5"><span class="material-symbols-outlined text-[14px]">mail</span> {{ doctor.email }}</p>
+        <p class="text-xs text-on-surface-variant flex items-center gap-1.5"><span class="material-symbols-outlined text-[14px]">call</span> {{ doctor.phone }}</p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  {% else %}
+  <div class="bg-surface rounded-2xl border border-outline-variant shadow-sm flex flex-col items-center justify-center py-24 text-center">
+    <span class="material-symbols-outlined text-6xl text-on-surface-variant mb-4">stethoscope</span>
+    <h3 class="text-xl font-bold text-on-surface-variant mb-2" style="font-family:Manrope">No Doctors Registered</h3>
+    <p class="text-sm text-on-surface-variant mb-6 max-w-xs">Add your first doctor to start scheduling appointments.</p>
+    <a href="/doctors/add" class="px-6 py-3 bg-secondary text-on-secondary font-semibold rounded-xl hover:opacity-90 flex items-center gap-2">
+      <span class="material-symbols-outlined text-[20px]">add</span> Register First Doctor
+    </a>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>PatientOS - Emergency & Code Blue Triage Response</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface": "#f9f9ff",
+            "primary": "#004688",
+            "on-primary": "#ffffff",
+            "primary-container": "#0d5eaf",
+            "on-primary-container": "#c4d9ff",
+            "background": "#f9f9ff",
+            "on-background": "#111c2c",
+            "outline-variant": "#c2c6d3",
+            "on-surface-variant": "#424751"
+          }
+        }
+      }
+    }
+  </script>
+  <script>
+    if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+</head>
+<body class="bg-background text-on-background min-h-screen flex dark:bg-gray-900 dark:text-gray-100 transition-colors duration-200">
+
+  <!-- Sidebar -->
+  <aside class="w-[280px] bg-surface border-r border-outline-variant flex flex-col h-screen fixed left-0 top-0 z-20 dark:bg-gray-800 dark:border-gray-700">
+    <div class="p-6 flex items-center gap-3 border-b border-outline-variant dark:border-gray-700">
+      <div class="p-2 bg-red-600 text-white rounded-xl flex items-center justify-center animate-pulse">
+        <span class="material-symbols-outlined text-2xl">warning</span>
+      </div>
+      <div>
+        <h1 class="font-headline font-bold text-lg text-primary dark:text-blue-400">PatientOS</h1>
+        <p class="text-xs text-red-600 font-semibold">Emergency Desk</p>
+      </div>
+    </div>
+    
+    <nav class="flex-1 space-y-1 p-3 overflow-y-auto">
+      <a class="text-on-surface-variant hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-700 px-4 py-3 rounded-lg flex items-center gap-3 text-sm" href="dashboard.html">
+        <span class="material-symbols-outlined">dashboard</span>
+        <span>Dashboard</span>
+      </a>
+      <a class="text-on-surface-variant hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-700 px-4 py-3 rounded-lg flex items-center gap-3 text-sm" href="patients.html">
+        <span class="material-symbols-outlined">group</span>
+        <span>Patients</span>
+      </a>
+      <a class="text-on-surface-variant hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-700 px-4 py-3 rounded-lg flex items-center gap-3 text-sm" href="appointments.html">
+        <span class="material-symbols-outlined">calendar_today</span>
+        <span>Appointments</span>
+      </a>
+      <a class="text-on-surface-variant hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-700 px-4 py-3 rounded-lg flex items-center gap-3 text-sm" href="billing.html">
+        <span class="material-symbols-outlined">payments</span>
+        <span>Billing</span>
+      </a>
+      <a class="text-on-surface-variant hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-700 px-4 py-3 rounded-lg flex items-center gap-3 text-sm" href="bed_management.html">
+        <span class="material-symbols-outlined">bed</span>
+        <span>Bed Management</span>
+      </a>
+      <a class="bg-red-600 text-white font-semibold rounded-lg px-4 py-3 flex items-center gap-3 text-sm shadow-md" href="emergency.html">
+        <span class="material-symbols-outlined text-yellow-300">warning</span>
+        <span>Emergency Triage</span>
+      </a>
+      <a class="text-on-surface-variant hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-700 px-4 py-3 rounded-lg flex items-center gap-3 text-sm" href="audit_logs.html">
+        <span class="material-symbols-outlined">security</span>
+        <span>Audit & Compliance</span>
+      </a>
+      <a class="text-on-surface-variant hover:bg-gray-200 dark:text-gray-300 dark:hover:bg-gray-700 px-4 py-3 rounded-lg flex items-center gap-3 text-sm" href="settings.html">
+        <span class="material-symbols-outlined">settings</span>
+        <span>Settings</span>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="ml-[280px] w-[calc(100%-280px)] min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="h-16 flex justify-between items-center px-8 bg-surface border-b border-outline-variant sticky top-0 z-10 dark:bg-gray-800 dark:border-gray-700">
+      <div class="flex items-center gap-3">
+        <span class="material-symbols-outlined text-red-600">e911_emergency</span>
+        <h1 class="text-xl font-bold dark:text-white">Emergency Response & ER Triage Center</h1>
+      </div>
+      <div class="flex items-center gap-4">
+        <!-- Panic Trigger Button -->
+        <button onclick="triggerCodeBlue()" class="px-6 py-2.5 bg-red-600 hover:bg-red-700 text-white rounded-xl text-sm font-bold flex items-center gap-2 shadow-lg shadow-red-500/30 animate-pulse">
+          <span class="material-symbols-outlined">notifications_active</span> TRIGGER CODE BLUE
+        </button>
+      </div>
+    </header>
+
+    <!-- Emergency Active Banner (Hidden by default) -->
+    <div id="code-blue-banner" class="hidden bg-red-600 text-white px-8 py-4 flex justify-between items-center animate-bounce shadow-xl">
+      <div class="flex items-center gap-3">
+        <span class="material-symbols-outlined text-3xl">warning</span>
+        <div>
+          <h3 class="font-black tracking-wider text-lg">CRITICAL ALERT: CODE BLUE ACTIVATED</h3>
+          <p class="text-xs">Location: ICU Ward - Bed #02. Resuscitation Team Dispatched.</p>
+        </div>
+      </div>
+      <button onclick="cancelCodeBlue()" class="px-4 py-1.5 bg-white text-red-700 text-xs font-bold rounded-lg uppercase">Acknowledge & Clear</button>
+    </div>
+
+    <div class="p-8 max-w-[1400px] w-full mx-auto space-y-6">
+      
+      <!-- Rapid Contact & Protocol Quick-Dials -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div class="p-5 bg-red-50 dark:bg-red-950/40 border-2 border-red-500 rounded-2xl flex items-center justify-between cursor-pointer hover:bg-red-100 transition-colors" onclick="alert('Calling Trauma Response Team Alpha...')">
+          <div>
+            <h4 class="font-bold text-red-700 dark:text-red-400 text-sm">Trauma Response Team</h4>
+            <p class="text-xs text-red-600/80 font-mono mt-0.5">Ext. 9911 • On Duty</p>
+          </div>
+          <span class="material-symbols-outlined text-red-600 text-3xl">call</span>
+        </div>
+
+        <div class="p-5 bg-amber-50 dark:bg-amber-950/40 border-2 border-amber-500 rounded-2xl flex items-center justify-between cursor-pointer hover:bg-amber-100 transition-colors" onclick="alert('Calling Stroke & Cardiac Unit...')">
+          <div>
+            <h4 class="font-bold text-amber-700 dark:text-amber-400 text-sm">Stroke Rapid Response</h4>
+            <p class="text-xs text-amber-600/80 font-mono mt-0.5">Ext. 9922 • Standby</p>
+          </div>
+          <span class="material-symbols-outlined text-amber-600 text-3xl">local_hospital</span>
+        </div>
+
+        <div class="p-5 bg-blue-50 dark:bg-blue-950/40 border-2 border-blue-500 rounded-2xl flex items-center justify-between cursor-pointer hover:bg-blue-100 transition-colors" onclick="alert('Calling Intensive Care Unit Hotline...')">
+          <div>
+            <h4 class="font-bold text-blue-700 dark:text-blue-400 text-sm">ICU Head Duty Doctor</h4>
+            <p class="text-xs text-blue-600/80 font-mono mt-0.5">Dr. Sarah Mitchell</p>
+          </div>
+          <span class="material-symbols-outlined text-blue-600 text-3xl">medical_services</span>
+        </div>
+
+        <div class="p-5 bg-purple-50 dark:bg-purple-950/40 border-2 border-purple-500 rounded-2xl flex items-center justify-between cursor-pointer hover:bg-purple-100 transition-colors" onclick="alert('Contacting Hospital Blood Bank Dispatch...')">
+          <div>
+            <h4 class="font-bold text-purple-700 dark:text-purple-400 text-sm">Blood Bank Dispatch</h4>
+            <p class="text-xs text-purple-600/80 font-mono mt-0.5">O-Negative Urgent Supply</p>
+          </div>
+          <span class="material-symbols-outlined text-purple-600 text-3xl">bloodtype</span>
+        </div>
+      </div>
+
+      <!-- ER Triage Queue Table -->
+      <div class="bg-surface dark:bg-gray-800 border border-outline-variant dark:border-gray-700 rounded-2xl overflow-hidden shadow-sm">
+        <div class="p-5 border-b border-outline-variant dark:border-gray-700 flex justify-between items-center">
+          <div>
+            <h3 class="font-bold text-lg dark:text-white">Active Emergency Department Triage Queue</h3>
+            <p class="text-xs text-gray-500 dark:text-gray-400">Emergency Severity Index (ESI) Level 1 (Resuscitation) to Level 5 (Non-urgent)</p>
+          </div>
+          <button onclick="alert('Opening New Triage Intake Form...')" class="px-4 py-2 bg-red-600 text-white rounded-xl text-xs font-bold uppercase tracking-wider">
+            + Admit Triage Patient
+          </button>
+        </div>
+
+        <table class="w-full text-left text-sm">
+          <thead class="bg-gray-100 dark:bg-gray-900 text-xs uppercase text-gray-500 dark:text-gray-400">
+            <tr>
+              <th class="p-4">Priority / ESI</th>
+              <th class="p-4">Patient Name & ID</th>
+              <th class="p-4">Chief Complaint / Vitals</th>
+              <th class="p-4">Arrival Time</th>
+              <th class="p-4">Assigned Bed / Bay</th>
+              <th class="p-4">Status Action</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+            <!-- Level 1 -->
+            <tr class="bg-red-50/70 dark:bg-red-950/20">
+              <td class="p-4">
+                <span class="px-3 py-1 bg-red-600 text-white text-xs font-black rounded-lg">ESI-1 RESUSCITATION</span>
+              </td>
+              <td class="p-4">
+                <p class="font-bold text-gray-900 dark:text-white">Robert Vance</p>
+                <p class="text-xs text-gray-500">Age: 58 • Male • PAT-9921</p>
+              </td>
+              <td class="p-4">
+                <p class="font-semibold text-red-600 text-xs">Severe Anaphylactic Shock</p>
+                <p class="text-xs text-gray-500">BP: 80/50 • SpO2: 88%</p>
+              </td>
+              <td class="p-4 font-mono text-xs text-gray-500">5 mins ago (21:48)</td>
+              <td class="p-4 font-mono text-xs text-red-600 font-bold">ER-BAY-01</td>
+              <td class="p-4">
+                <button onclick="alert('Routing to OR...')" class="px-3 py-1.5 bg-red-600 text-white rounded-lg text-xs font-bold">Immediate Intervention</button>
+              </td>
+            </tr>
+
+            <!-- Level 2 -->
+            <tr class="bg-amber-50/50 dark:bg-amber-950/10">
+              <td class="p-4">
+                <span class="px-3 py-1 bg-amber-500 text-white text-xs font-black rounded-lg">ESI-2 EMERGENT</span>
+              </td>
+              <td class="p-4">
+                <p class="font-bold text-gray-900 dark:text-white">Maria Garcia</p>
+                <p class="text-xs text-gray-500">Age: 34 • Female • PAT-8492</p>
+              </td>
+              <td class="p-4">
+                <p class="font-semibold text-amber-700 dark:text-amber-400 text-xs">Acute Abdominal Trauma</p>
+                <p class="text-xs text-gray-500">BP: 110/75 • HR: 115 bpm</p>
+              </td>
+              <td class="p-4 font-mono text-xs text-gray-500">18 mins ago (21:35)</td>
+              <td class="p-4 font-mono text-xs text-gray-700 dark:text-gray-300">ER-BAY-04</td>
+              <td class="p-4">
+                <button onclick="alert('Assigning Attending Physician...')" class="px-3 py-1.5 bg-amber-500 text-white rounded-lg text-xs font-bold">Assign Physician</button>
+              </td>
+            </tr>
+
+            <!-- Level 3 -->
+            <tr>
+              <td class="p-4">
+                <span class="px-3 py-1 bg-yellow-500 text-white text-xs font-black rounded-lg">ESI-3 URGENT</span>
+              </td>
+              <td class="p-4">
+                <p class="font-bold text-gray-900 dark:text-white">David Miller</p>
+                <p class="text-xs text-gray-500">Age: 42 • Male • PAT-7721</p>
+              </td>
+              <td class="p-4">
+                <p class="font-semibold text-gray-800 dark:text-gray-200 text-xs">Suspected Wrist Fracture</p>
+                <p class="text-xs text-gray-500">Vitals Stable</p>
+              </td>
+              <td class="p-4 font-mono text-xs text-gray-500">42 mins ago (21:11)</td>
+              <td class="p-4 font-mono text-xs text-gray-500">Triage Waiting 3</td>
+              <td class="p-4">
+                <button onclick="alert('Sending for X-Ray...')" class="px-3 py-1 border text-xs font-semibold rounded-lg dark:border-gray-700">Send to X-Ray</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    function triggerCodeBlue() {
+      document.getElementById('code-blue-banner').classList.remove('hidden');
+      alert('⚠️ ALERT DISPATCHED: Code Blue initiated across hospital network!');
+    }
+
+    function cancelCodeBlue() {
+      document.getElementById('code-blue-banner').classList.add('hidden');
+    }
+  </script>
+</body>
+</html>

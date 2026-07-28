@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% set active = 'appointments' %}
+{% block title %}Appointments{% endblock %}
+{% block page_title %}Appointment Schedule{% endblock %}
+{% block content %}
+
+<div class="max-w-6xl mx-auto">
+  <div class="flex items-center justify-between mb-8">
+    <div>
+      <h2 class="text-2xl font-bold text-on-surface" style="font-family:Manrope">All Appointments</h2>
+      <p class="text-on-surface-variant text-sm mt-1">{{ appointments|length }} appointment(s) total</p>
+    </div>
+    <a href="/appointments/add" class="flex items-center gap-2 px-6 py-2.5 bg-primary text-on-primary font-semibold rounded-xl shadow hover:opacity-90 transition-all transform hover:-translate-y-0.5">
+      <span class="material-symbols-outlined text-[20px]">event_available</span> New Appointment
+    </a>
+  </div>
+
+  {% if appointments %}
+  <div class="bg-surface rounded-2xl border border-outline-variant shadow-sm overflow-hidden">
+    <table class="w-full">
+      <thead class="bg-surface-container-low">
+        <tr>
+          <th class="px-6 py-3 text-left text-xs font-semibold text-on-surface-variant uppercase tracking-wider">#</th>
+          <th class="px-6 py-3 text-left text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Patient</th>
+          <th class="px-6 py-3 text-left text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Doctor</th>
+          <th class="px-6 py-3 text-left text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Date</th>
+          <th class="px-6 py-3 text-left text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Time</th>
+          <th class="px-6 py-3 text-left text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Reason</th>
+          <th class="px-6 py-3 text-left text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Status</th>
+          <th class="px-6 py-3 text-left text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Actions</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-outline-variant">
+        {% for appt in appointments %}
+        <tr class="hover:bg-surface-container-low transition-colors">
+          <td class="px-6 py-4 text-xs text-on-surface-variant">{{ loop.index }}</td>
+          <td class="px-6 py-4">
+            <div class="flex items-center gap-2">
+              <div class="w-7 h-7 rounded-full bg-primary flex items-center justify-center flex-shrink-0">
+                <span class="text-on-primary text-xs font-bold">{{ appt.patient.name[0].upper() }}</span>
+              </div>
+              <span class="font-semibold text-on-surface text-sm">{{ appt.patient.name }}</span>
+            </div>
+          </td>
+          <td class="px-6 py-4 text-sm text-on-surface-variant">Dr. {{ appt.doctor.name }}</td>
+          <td class="px-6 py-4 text-sm font-medium text-on-surface">{{ appt.date }}</td>
+          <td class="px-6 py-4 text-sm text-on-surface-variant">{{ appt.time }}</td>
+          <td class="px-6 py-4 text-sm text-on-surface-variant max-w-xs truncate">{{ appt.reason or '—' }}</td>
+          <td class="px-6 py-4">
+            <span class="px-3 py-1 text-xs font-semibold rounded-full
+              {% if appt.status == 'Scheduled' %}bg-primary/10 text-primary
+              {% elif appt.status == 'Completed' %}bg-secondary-container text-on-secondary-container
+              {% else %}bg-error-container text-on-error-container{% endif %}">
+              {{ appt.status }}
+            </span>
+          </td>
+          <td class="px-6 py-4">
+            <form method="POST" action="/appointments/delete/{{ appt.id }}" onsubmit="return confirm('Delete this appointment?')">
+              <button type="submit" class="p-2 text-error hover:bg-error-container rounded-lg transition-colors">
+                <span class="material-symbols-outlined text-[18px]">delete</span>
+              </button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  {% else %}
+  <div class="bg-surface rounded-2xl border border-outline-variant shadow-sm flex flex-col items-center justify-center py-24 text-center">
+    <span class="material-symbols-outlined text-6xl text-on-surface-variant mb-4">event_busy</span>
+    <h3 class="text-xl font-bold text-on-surface-variant mb-2" style="font-family:Manrope">No Appointments Scheduled</h3>
+    <p class="text-sm text-on-surface-variant mb-6 max-w-sm">
+      Make sure you've registered at least one patient and one doctor before creating an appointment.
+    </p>
+    <div class="flex gap-3">
+      <a href="/patients/add" class="px-5 py-2.5 bg-surface-container text-on-surface font-medium rounded-xl border border-outline-variant hover:bg-surface-container-high text-sm">Add Patient First</a>
+      <a href="/appointments/add" class="px-5 py-2.5 bg-primary text-on-primary font-semibold rounded-xl hover:opacity-90 flex items-center gap-2 text-sm">
+        <span class="material-symbols-outlined text-[18px]">add</span> Schedule Appointment
+      </a>
+    </div>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

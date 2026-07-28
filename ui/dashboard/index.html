@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+{% set active = 'dashboard' %}
+{% block title %}Dashboard{% endblock %}
+
+{% block page_title %}Dashboard Overview{% endblock %}
+{% block content %}
+
+<div class="max-w-6xl mx-auto">
+  <!-- Greeting -->
+  <div class="mb-8">
+    <h2 class="text-3xl font-bold text-on-surface" style="font-family:Manrope">Welcome to PatientOS</h2>
+    <p class="text-on-surface-variant mt-1">Here's a live snapshot of your clinic today.</p>
+  </div>
+
+  <!-- Stats Cards -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+    <!-- Total Patients -->
+    <div class="bg-surface rounded-2xl p-6 border border-outline-variant shadow-sm hover:shadow-md transition-shadow">
+      <div class="flex justify-between items-start mb-4">
+        <div class="p-3 bg-primary/10 rounded-xl">
+          <span class="material-symbols-outlined text-primary">group</span>
+        </div>
+      </div>
+      <p class="text-sm font-semibold text-on-surface-variant uppercase tracking-wider">Total Patients</p>
+      <p class="text-4xl font-bold text-on-surface mt-1" style="font-family:Manrope">{{ total_patients }}</p>
+      {% if total_patients == 0 %}
+        <a href="/patients/add" class="text-xs text-primary mt-2 inline-block hover:underline">+ Register first patient</a>
+      {% endif %}
+    </div>
+
+    <!-- Total Doctors -->
+    <div class="bg-surface rounded-2xl p-6 border border-outline-variant shadow-sm hover:shadow-md transition-shadow">
+      <div class="flex justify-between items-start mb-4">
+        <div class="p-3 bg-secondary/10 rounded-xl">
+          <span class="material-symbols-outlined text-secondary">stethoscope</span>
+        </div>
+      </div>
+      <p class="text-sm font-semibold text-on-surface-variant uppercase tracking-wider">Total Doctors</p>
+      <p class="text-4xl font-bold text-on-surface mt-1" style="font-family:Manrope">{{ total_doctors }}</p>
+      {% if total_doctors == 0 %}
+        <a href="/doctors/add" class="text-xs text-primary mt-2 inline-block hover:underline">+ Register first doctor</a>
+      {% endif %}
+    </div>
+
+    <!-- Today's Appointments -->
+    <div class="bg-surface rounded-2xl p-6 border border-outline-variant shadow-sm hover:shadow-md transition-shadow">
+      <div class="flex justify-between items-start mb-4">
+        <div class="p-3 bg-primary-container/30 rounded-xl">
+          <span class="material-symbols-outlined text-primary">calendar_today</span>
+        </div>
+      </div>
+      <p class="text-sm font-semibold text-on-surface-variant uppercase tracking-wider">Today's Appointments</p>
+      <p class="text-4xl font-bold text-on-surface mt-1" style="font-family:Manrope">{{ todays_appointments }}</p>
+      {% if todays_appointments == 0 %}
+        <a href="/appointments/add" class="text-xs text-primary mt-2 inline-block hover:underline">+ Schedule one</a>
+      {% endif %}
+    </div>
+
+    <!-- Total Appointments -->
+    <div class="bg-surface rounded-2xl p-6 border border-outline-variant shadow-sm hover:shadow-md transition-shadow">
+      <div class="flex justify-between items-start mb-4">
+        <div class="p-3 bg-secondary-container/30 rounded-xl">
+          <span class="material-symbols-outlined text-secondary">event_note</span>
+        </div>
+      </div>
+      <p class="text-sm font-semibold text-on-surface-variant uppercase tracking-wider">Total Appointments</p>
+      <p class="text-4xl font-bold text-on-surface mt-1" style="font-family:Manrope">{{ total_appointments }}</p>
+    </div>
+  </div>
+
+  <!-- Quick Actions -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+    <a href="/patients/add" class="group flex items-center gap-4 p-5 bg-primary text-on-primary rounded-2xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all">
+      <span class="material-symbols-outlined text-3xl">person_add</span>
+      <div>
+        <p class="font-bold text-lg" style="font-family:Manrope">Register Patient</p>
+        <p class="text-sm opacity-80">Add a new patient record</p>
+      </div>
+    </a>
+    <a href="/doctors/add" class="group flex items-center gap-4 p-5 bg-secondary text-on-secondary rounded-2xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all">
+      <span class="material-symbols-outlined text-3xl">medical_services</span>
+      <div>
+        <p class="font-bold text-lg" style="font-family:Manrope">Register Doctor</p>
+        <p class="text-sm opacity-80">Add a new doctor profile</p>
+      </div>
+    </a>
+    <a href="/appointments/add" class="group flex items-center gap-4 p-5 bg-surface border-2 border-primary text-primary rounded-2xl shadow hover:shadow-xl transform hover:-translate-y-1 transition-all">
+      <span class="material-symbols-outlined text-3xl">event_available</span>
+      <div>
+        <p class="font-bold text-lg" style="font-family:Manrope">New Appointment</p>
+        <p class="text-sm text-on-surface-variant">Schedule an appointment</p>
+      </div>
+    </a>
+  </div>
+
+  <!-- Recent Appointments Table -->
+  <div class="bg-surface rounded-2xl border border-outline-variant shadow-sm overflow-hidden">
+    <div class="flex items-center justify-between p-6 border-b border-outline-variant">
+      <h3 class="text-lg font-bold text-on-surface" style="font-family:Manrope">Recent Appointments</h3>
+      <a href="/appointments/add" class="flex items-center gap-2 px-4 py-2 bg-primary text-on-primary text-sm font-semibold rounded-lg hover:opacity-90 transition-opacity">
+        <span class="material-symbols-outlined text-[18px]">add</span> New
+      </a>
+    </div>
+    {% if recent_appointments %}
+    <table class="w-full">
+      <thead class="bg-surface-container-low">
+        <tr>
+          <th class="px-6 py-3 text-left text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Patient</th>
+          <th class="px-6 py-3 text-left text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Doctor</th>
+          <th class="px-6 py-3 text-left text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Date</th>
+          <th class="px-6 py-3 text-left text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Time</th>
+          <th class="px-6 py-3 text-left text-xs font-semibold text-on-surface-variant uppercase tracking-wider">Status</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-outline-variant">
+        {% for appt in recent_appointments %}
+        <tr class="hover:bg-surface-container-low transition-colors">
+          <td class="px-6 py-4 font-medium text-on-surface">{{ appt.patient.name }}</td>
+          <td class="px-6 py-4 text-on-surface-variant">{{ appt.doctor.name }}</td>
+          <td class="px-6 py-4 text-on-surface-variant">{{ appt.date }}</td>
+          <td class="px-6 py-4 text-on-surface-variant">{{ appt.time }}</td>
+          <td class="px-6 py-4">
+            <span class="px-3 py-1 text-xs font-semibold rounded-full
+              {% if appt.status == 'Scheduled' %}bg-primary/10 text-primary
+              {% elif appt.status == 'Completed' %}bg-secondary-container text-on-secondary-container
+              {% else %}bg-error-container text-on-error-container{% endif %}">
+              {{ appt.status }}
+            </span>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <div class="flex flex-col items-center justify-center py-16 text-center">
+      <span class="material-symbols-outlined text-5xl text-on-surface-variant mb-4">event_busy</span>
+      <p class="text-lg font-semibold text-on-surface-variant" style="font-family:Manrope">No appointments yet</p>
+      <p class="text-sm text-on-surface-variant mt-1 mb-4">Start by registering patients and doctors, then schedule an appointment.</p>
+      <a href="/appointments/add" class="px-6 py-2.5 bg-primary text-on-primary text-sm font-semibold rounded-lg hover:opacity-90">Schedule Now</a>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

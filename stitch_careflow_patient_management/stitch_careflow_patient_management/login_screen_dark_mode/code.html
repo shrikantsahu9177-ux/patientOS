@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MediFlow Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Manrope:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed-dim": "#ffb68c",
+                    "secondary-fixed-dim": "#a7c8ff",
+                    "surface-dim": "#10131a",
+                    "on-primary-container": "#002957",
+                    "on-secondary-fixed": "#001b3c",
+                    "on-surface-variant": "#c1c6d6",
+                    "secondary-fixed": "#d5e3ff",
+                    "secondary-container": "#0059aa",
+                    "primary-container": "#3d90ff",
+                    "on-tertiary": "#532200",
+                    "on-error": "#690005",
+                    "on-primary": "#003063",
+                    "on-secondary-fixed-variant": "#004788",
+                    "outline-variant": "#414754",
+                    "on-secondary": "#003061",
+                    "on-primary-fixed-variant": "#00468c",
+                    "on-tertiary-container": "#481d00",
+                    "surface-container-high": "#272a31",
+                    "tertiary-container": "#e76e0d",
+                    "error": "#ffb4ab",
+                    "background": "#10131a",
+                    "on-surface": "#e0e2ec",
+                    "inverse-primary": "#005db7",
+                    "surface-bright": "#363941",
+                    "primary": "#a9c7ff",
+                    "tertiary": "#ffb68c",
+                    "surface-container-low": "#181c23",
+                    "inverse-surface": "#e0e2ec",
+                    "surface-variant": "#31353d",
+                    "on-secondary-container": "#b9d2ff",
+                    "on-tertiary-fixed-variant": "#753400",
+                    "secondary": "#a7c8ff",
+                    "surface-container": "#1c2027",
+                    "on-background": "#e0e2ec",
+                    "primary-fixed": "#d6e3ff",
+                    "on-tertiary-fixed": "#321200",
+                    "inverse-on-surface": "#2d3038",
+                    "on-error-container": "#ffdad6",
+                    "surface-container-highest": "#31353d",
+                    "on-primary-fixed": "#001b3d",
+                    "surface-container-lowest": "#0b0e15",
+                    "tertiary-fixed": "#ffdbc9",
+                    "outline": "#8b919f",
+                    "surface-tint": "#a9c7ff",
+                    "primary-fixed-dim": "#a9c7ff",
+                    "surface": "#10131a",
+                    "error-container": "#93000a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "base": "4px",
+                    "margin-mobile": "16px",
+                    "md": "24px",
+                    "margin-desktop": "48px",
+                    "xs": "8px",
+                    "sm": "16px",
+                    "xl": "64px",
+                    "lg": "40px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "body-md": ["Manrope"],
+                    "body-lg": ["Manrope"],
+                    "label-sm": ["Manrope"],
+                    "headline-lg-mobile": ["Manrope"],
+                    "headline-lg": ["Manrope"],
+                    "headline-sm": ["Manrope"],
+                    "label-md": ["Manrope"],
+                    "body-sm": ["Manrope"],
+                    "headline-md": ["Manrope"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .login-card {
+            box-shadow: 0px 8px 32px rgba(0,0,0,0.4);
+            border: 1px solid #414754;
+        }
+        .focused-input:focus-within {
+            box-shadow: 0 0 0 2px #a9c7ff33;
+        }
+    </style>
+</head>
+<body class="bg-background font-body-md text-on-background min-h-screen flex flex-col justify-center items-center relative overflow-hidden">
+<!-- Background Atmosphere -->
+<div class="absolute inset-0 z-0 opacity-20">
+<div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary rounded-full blur-[120px]"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-secondary rounded-full blur-[120px]"></div>
+</div>
+<!-- Login Container -->
+<main class="z-10 w-full max-w-md px-margin-mobile md:px-0">
+<div class="bg-surface-container rounded-xl p-lg login-card">
+<!-- Brand Identity -->
+<header class="flex flex-col items-center mb-lg">
+<div class="w-16 h-16 bg-primary-container/20 rounded-full flex items-center justify-center mb-sm">
+<span class="material-symbols-outlined text-primary text-[40px]" data-icon="medical_services">medical_services</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-primary">MediFlow Login</h1>
+<p class="font-body-md text-on-surface-variant mt-xs">Clinical Portal Access</p>
+</header>
+<!-- Login Form -->
+<form action="#" class="space-y-md" onsubmit="event.preventDefault();">
+<!-- Role Selection Toggle -->
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant block">SELECT ROLE</label>
+<div class="grid grid-cols-3 gap-xs bg-surface-container-low p-xs rounded-lg">
+<button class="role-btn font-label-md text-label-md py-sm rounded-md transition-all bg-primary-container text-on-primary-container shadow-sm" data-role="Doctor" type="button">Doctor</button>
+<button class="role-btn font-label-md text-label-md py-sm rounded-md transition-all text-on-surface-variant hover:bg-surface-container-high" data-role="Nurse" type="button">Nurse</button>
+<button class="role-btn font-label-md text-label-md py-sm rounded-md transition-all text-on-surface-variant hover:bg-surface-container-high" data-role="Admin" type="button">Admin</button>
+</div>
+</div>
+<!-- Email Input -->
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant block" for="email">EMAIL ADDRESS</label>
+<div class="relative group focused-input rounded-lg">
+<div class="absolute inset-y-0 left-0 pl-sm flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline" data-icon="mail">mail</span>
+</div>
+<input class="block w-full pl-xl pr-sm py-md bg-surface-container-lowest border-outline-variant text-on-surface rounded-lg font-body-md focus:border-primary focus:ring-0 transition-colors" id="email" name="email" placeholder="dr.smith@mediflow.com" required="" type="email"/>
+</div>
+</div>
+<!-- Password Input -->
+<div class="space-y-xs">
+<div class="flex justify-between items-center">
+<label class="font-label-md text-label-md text-on-surface-variant" for="password">PASSWORD</label>
+<a class="font-label-md text-label-md text-primary hover:text-primary-fixed-dim transition-all" href="#">Forgot Password?</a>
+</div>
+<div class="relative group focused-input rounded-lg">
+<div class="absolute inset-y-0 left-0 pl-sm flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline" data-icon="lock">lock</span>
+</div>
+<input class="block w-full pl-xl pr-12 py-md bg-surface-container-lowest border-outline-variant text-on-surface rounded-lg font-body-md focus:border-primary focus:ring-0 transition-colors" id="password" name="password" placeholder="••••••••" required="" type="password"/>
+<button class="absolute inset-y-0 right-0 pr-sm flex items-center text-outline hover:text-primary transition-colors" type="button">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</button>
+</div>
+</div>
+<!-- Login Action -->
+<div class="pt-sm">
+<button class="w-full bg-primary text-on-primary font-label-md text-label-md py-md rounded-lg shadow-sm hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center gap-sm" type="submit">
+<span>Sign In to Dashboard</span>
+<span class="material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</form>
+<!-- Help/Footer -->
+<footer class="mt-lg pt-md border-t border-outline-variant flex justify-center">
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]" data-icon="help_outline">help_outline</span>
+                    Need assistance? <a class="text-primary font-medium hover:underline" href="#">Contact Support</a>
+</p>
+</footer>
+</div>
+<!-- Security Badge -->
+<div class="mt-md flex justify-center items-center gap-sm opacity-60">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]" data-icon="encrypted">encrypted</span>
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant">HIPAA COMPLIANT ENCRYPTION</span>
+</div>
+</main>
+<script>
+        // Micro-interactions for Role Selection
+        const roleButtons = document.querySelectorAll('.role-btn');
+        roleButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                roleButtons.forEach(b => {
+                    b.classList.remove('bg-primary-container', 'text-on-primary-container', 'shadow-sm');
+                    b.classList.add('text-on-surface-variant', 'hover:bg-surface-container-high');
+                });
+                btn.classList.add('bg-primary-container', 'text-on-primary-container', 'shadow-sm');
+                btn.classList.remove('text-on-surface-variant', 'hover:bg-surface-container-high');
+            });
+        });
+
+        // Password visibility toggle
+        const togglePass = document.querySelector('[data-icon="visibility"]').parentElement;
+        const passInput = document.getElementById('password');
+        togglePass.addEventListener('click', () => {
+            const isPass = passInput.type === 'password';
+            passInput.type = isPass ? 'text' : 'password';
+            togglePass.querySelector('span').innerText = isPass ? 'visibility_off' : 'visibility';
+        });
+    </script>
+</body></html>

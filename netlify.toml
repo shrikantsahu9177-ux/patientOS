@@ -1,0 +1,9 @@
+# Netlify Build Configuration
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "/"
+  to = "/pages/login.html"
+  status = 302
+  force = false

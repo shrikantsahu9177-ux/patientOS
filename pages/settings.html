@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html class="light" lang="en">
+
 <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
   <title>PatientOS - System Settings & Preferences</title>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet" />
   <script id="tailwind-config">
     tailwind.config = {
       darkMode: "class",
@@ -56,17 +60,38 @@
     }
   </script>
   <style>
-    body { font-family: 'Inter', sans-serif; }
-    h1, h2, h3, h4 { font-family: 'Manrope', sans-serif; }
-    .custom-scrollbar::-webkit-scrollbar { width: 6px; }
-    .custom-scrollbar::-webkit-scrollbar-thumb { background: #c2c6d3; border-radius: 9999px; }
-    .dark .custom-scrollbar::-webkit-scrollbar-thumb { background: #424751; }
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: 'Manrope', sans-serif;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #c2c6d3;
+      border-radius: 9999px;
+    }
+
+    .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #424751;
+    }
   </style>
 </head>
-<body class="bg-background text-on-background min-h-screen flex dark:bg-gray-900 dark:text-gray-100 transition-colors duration-200">
+
+<body
+  class="bg-background text-on-background min-h-screen flex dark:bg-gray-900 dark:text-gray-100 transition-colors duration-200">
 
   <!-- Sidebar Navigation -->
-  <aside class="w-[280px] bg-surface border-r border-outline-variant flex flex-col h-screen fixed left-0 top-0 z-20 dark:bg-gray-800 dark:border-gray-700">
+  <aside
+    class="w-[280px] bg-surface border-r border-outline-variant flex flex-col h-screen fixed left-0 top-0 z-20 dark:bg-gray-800 dark:border-gray-700">
     <div class="p-6 flex items-center gap-3 border-b border-outline-variant dark:border-gray-700">
       <div class="p-2 bg-primary text-on-primary rounded-xl flex items-center justify-center">
         <span class="material-symbols-outlined text-2xl">local_hospital</span>
@@ -76,44 +101,53 @@
         <p class="text-xs text-on-surface-variant dark:text-gray-400">Enterprise Health Suite</p>
       </div>
     </div>
-    
+
     <nav class="flex-1 space-y-1 p-3 overflow-y-auto custom-scrollbar">
-      <a class="text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface dark:text-gray-300 dark:hover:bg-gray-700 px-4 py-3 rounded-lg transition-colors flex items-center gap-3 font-medium text-sm" href="dashboard.html">
+      <a class="text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface dark:text-gray-300 dark:hover:bg-gray-700 px-4 py-3 rounded-lg transition-colors flex items-center gap-3 font-medium text-sm"
+        href="dashboard.html">
         <span class="material-symbols-outlined">dashboard</span>
         <span>Dashboard</span>
       </a>
-      <a class="text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface dark:text-gray-300 dark:hover:bg-gray-700 px-4 py-3 rounded-lg transition-colors flex items-center gap-3 font-medium text-sm" href="patients.html">
+      <a class="text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface dark:text-gray-300 dark:hover:bg-gray-700 px-4 py-3 rounded-lg transition-colors flex items-center gap-3 font-medium text-sm"
+        href="patients.html">
         <span class="material-symbols-outlined">group</span>
         <span>Patients</span>
       </a>
-      <a class="text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface dark:text-gray-300 dark:hover:bg-gray-700 px-4 py-3 rounded-lg transition-colors flex items-center gap-3 font-medium text-sm" href="appointments.html">
+      <a class="text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface dark:text-gray-300 dark:hover:bg-gray-700 px-4 py-3 rounded-lg transition-colors flex items-center gap-3 font-medium text-sm"
+        href="appointments.html">
         <span class="material-symbols-outlined">calendar_today</span>
         <span>Appointments</span>
       </a>
-      <a class="text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface dark:text-gray-300 dark:hover:bg-gray-700 px-4 py-3 rounded-lg transition-colors flex items-center gap-3 font-medium text-sm" href="billing.html">
+      <a class="text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface dark:text-gray-300 dark:hover:bg-gray-700 px-4 py-3 rounded-lg transition-colors flex items-center gap-3 font-medium text-sm"
+        href="billing.html">
         <span class="material-symbols-outlined">payments</span>
         <span>Billing</span>
       </a>
-      <a class="text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface dark:text-gray-300 dark:hover:bg-gray-700 px-4 py-3 rounded-lg transition-colors flex items-center gap-3 font-medium text-sm" href="bed_management.html">
+      <a class="text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface dark:text-gray-300 dark:hover:bg-gray-700 px-4 py-3 rounded-lg transition-colors flex items-center gap-3 font-medium text-sm"
+        href="bed_management.html">
         <span class="material-symbols-outlined">bed</span>
         <span>Bed Management</span>
       </a>
-      <a class="text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface dark:text-gray-300 dark:hover:bg-gray-700 px-4 py-3 rounded-lg transition-colors flex items-center gap-3 font-medium text-sm" href="emergency.html">
+      <a class="text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface dark:text-gray-300 dark:hover:bg-gray-700 px-4 py-3 rounded-lg transition-colors flex items-center gap-3 font-medium text-sm"
+        href="emergency.html">
         <span class="material-symbols-outlined text-red-500">warning</span>
         <span>Emergency Triage</span>
       </a>
-      <a class="text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface dark:text-gray-300 dark:hover:bg-gray-700 px-4 py-3 rounded-lg transition-colors flex items-center gap-3 font-medium text-sm" href="audit_logs.html">
+      <a class="text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface dark:text-gray-300 dark:hover:bg-gray-700 px-4 py-3 rounded-lg transition-colors flex items-center gap-3 font-medium text-sm"
+        href="audit_logs.html">
         <span class="material-symbols-outlined">security</span>
         <span>Audit & Compliance</span>
       </a>
-      <a class="bg-primary-container text-on-primary-container font-semibold rounded-lg px-4 py-3 flex items-center gap-3 font-medium text-sm dark:bg-blue-600 dark:text-white" href="settings.html">
+      <a class="bg-primary-container text-on-primary-container font-semibold rounded-lg px-4 py-3 flex items-center gap-3 font-medium text-sm dark:bg-blue-600 dark:text-white"
+        href="settings.html">
         <span class="material-symbols-outlined">settings</span>
         <span>Settings</span>
       </a>
     </nav>
 
     <div class="p-4 border-t border-outline-variant dark:border-gray-700 space-y-1">
-      <a class="text-on-surface-variant hover:bg-surface-container-high dark:text-gray-300 dark:hover:bg-gray-700 px-4 py-2.5 rounded-lg transition-colors flex items-center gap-3 text-sm" href="login.html">
+      <a class="text-on-surface-variant hover:bg-surface-container-high dark:text-gray-300 dark:hover:bg-gray-700 px-4 py-2.5 rounded-lg transition-colors flex items-center gap-3 text-sm"
+        href="login.html">
         <span class="material-symbols-outlined">logout</span>
         <span>Logout</span>
       </a>
@@ -123,20 +157,23 @@
   <!-- Main Content -->
   <main class="ml-[280px] w-[calc(100%-280px)] min-h-screen flex flex-col overflow-y-auto custom-scrollbar">
     <!-- Top Header -->
-    <header class="h-16 flex justify-between items-center px-8 bg-surface border-b border-outline-variant sticky top-0 z-10 dark:bg-gray-800 dark:border-gray-700">
+    <header
+      class="h-16 flex justify-between items-center px-8 bg-surface border-b border-outline-variant sticky top-0 z-10 dark:bg-gray-800 dark:border-gray-700">
       <div class="flex items-center gap-3">
         <span class="material-symbols-outlined text-primary dark:text-blue-400">tune</span>
         <h1 class="text-xl font-bold text-on-surface dark:text-white">Settings & Preferences</h1>
       </div>
       <div class="flex items-center gap-4">
-        <div id="quick-theme-toggle" class="cursor-pointer p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors" title="Toggle Theme">
+        <div id="quick-theme-toggle"
+          class="cursor-pointer p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+          title="Toggle Theme">
           <span class="material-symbols-outlined dark:hidden">dark_mode</span>
           <span class="material-symbols-outlined hidden dark:block text-yellow-400">light_mode</span>
         </div>
         <div class="h-6 w-[1px] bg-outline-variant dark:bg-gray-700"></div>
         <div class="flex items-center gap-3">
           <div class="text-right">
-            <p class="text-sm font-semibold text-on-surface dark:text-white">Dr. Sarah Mitchell</p>
+            <p class="text-sm font-semibold text-on-surface dark:text-white">Dr. Aryan</p>
             <p class="text-xs text-on-surface-variant dark:text-gray-400">Administrator</p>
           </div>
           <div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold">SM</div>
@@ -146,53 +183,67 @@
 
     <!-- Main Container -->
     <div class="p-8 max-w-[1200px] w-full mx-auto space-y-8">
-      
+
       <!-- Notification Toast -->
-      <div id="toast-notify" class="hidden fixed bottom-6 right-6 bg-emerald-600 text-white px-6 py-3 rounded-xl shadow-xl flex items-center gap-3 z-50 animate-bounce">
+      <div id="toast-notify"
+        class="hidden fixed bottom-6 right-6 bg-emerald-600 text-white px-6 py-3 rounded-xl shadow-xl flex items-center gap-3 z-50 animate-bounce">
         <span class="material-symbols-outlined">check_circle</span>
         <span id="toast-msg">Settings saved successfully!</span>
       </div>
 
       <!-- Tab Navigation Header -->
       <div class="flex border-b border-outline-variant dark:border-gray-700 space-x-8">
-        <button onclick="switchTab('profile')" id="tab-btn-profile" class="tab-btn pb-4 font-semibold text-primary border-b-2 border-primary dark:text-blue-400 dark:border-blue-400 flex items-center gap-2">
+        <button onclick="switchTab('profile')" id="tab-btn-profile"
+          class="tab-btn pb-4 font-semibold text-primary border-b-2 border-primary dark:text-blue-400 dark:border-blue-400 flex items-center gap-2">
           <span class="material-symbols-outlined">person</span> Profile Options
         </button>
-        <button onclick="switchTab('appearance')" id="tab-btn-appearance" class="tab-btn pb-4 font-medium text-on-surface-variant hover:text-primary dark:text-gray-400 dark:hover:text-white flex items-center gap-2">
+        <button onclick="switchTab('appearance')" id="tab-btn-appearance"
+          class="tab-btn pb-4 font-medium text-on-surface-variant hover:text-primary dark:text-gray-400 dark:hover:text-white flex items-center gap-2">
           <span class="material-symbols-outlined">palette</span> Appearance & Dark Mode
         </button>
-        <button onclick="switchTab('privacy')" id="tab-btn-privacy" class="tab-btn pb-4 font-medium text-on-surface-variant hover:text-primary dark:text-gray-400 dark:hover:text-white flex items-center gap-2">
+        <button onclick="switchTab('privacy')" id="tab-btn-privacy"
+          class="tab-btn pb-4 font-medium text-on-surface-variant hover:text-primary dark:text-gray-400 dark:hover:text-white flex items-center gap-2">
           <span class="material-symbols-outlined">lock</span> Privacy & Security
         </button>
-        <button onclick="switchTab('language')" id="tab-btn-language" class="tab-btn pb-4 font-medium text-on-surface-variant hover:text-primary dark:text-gray-400 dark:hover:text-white flex items-center gap-2">
+        <button onclick="switchTab('language')" id="tab-btn-language"
+          class="tab-btn pb-4 font-medium text-on-surface-variant hover:text-primary dark:text-gray-400 dark:hover:text-white flex items-center gap-2">
           <span class="material-symbols-outlined">language</span> Language & Regional
         </button>
-        <button onclick="switchTab('help')" id="tab-btn-help" class="tab-btn pb-4 font-medium text-on-surface-variant hover:text-primary dark:text-gray-400 dark:hover:text-white flex items-center gap-2">
+        <button onclick="switchTab('help')" id="tab-btn-help"
+          class="tab-btn pb-4 font-medium text-on-surface-variant hover:text-primary dark:text-gray-400 dark:hover:text-white flex items-center gap-2">
           <span class="material-symbols-outlined">help</span> Help & Support
         </button>
       </div>
 
       <!-- TAB 1: PROFILE OPTIONS -->
       <div id="tab-content-profile" class="tab-content space-y-6">
-        <div class="bg-surface dark:bg-gray-800 p-6 rounded-2xl border border-outline-variant dark:border-gray-700 shadow-sm">
+        <div
+          class="bg-surface dark:bg-gray-800 p-6 rounded-2xl border border-outline-variant dark:border-gray-700 shadow-sm">
           <h3 class="text-lg font-bold mb-4 dark:text-white flex items-center gap-2">
-            <span class="material-symbols-outlined text-primary dark:text-blue-400">account_circle</span> Personal Profile
+            <span class="material-symbols-outlined text-primary dark:text-blue-400">account_circle</span> Personal
+            Profile
           </h3>
           <div class="flex items-center gap-6 pb-6 border-b border-outline-variant dark:border-gray-700">
             <div class="relative">
-              <div class="w-24 h-24 rounded-full bg-primary text-white text-3xl font-bold flex items-center justify-center border-4 border-white shadow-md dark:border-gray-700">
+              <div
+                class="w-24 h-24 rounded-full bg-primary text-white text-3xl font-bold flex items-center justify-center border-4 border-white shadow-md dark:border-gray-700">
                 SM
               </div>
-              <button class="absolute bottom-0 right-0 p-2 bg-primary text-white rounded-full hover:opacity-90 shadow-md">
+              <button
+                class="absolute bottom-0 right-0 p-2 bg-primary text-white rounded-full hover:opacity-90 shadow-md">
                 <span class="material-symbols-outlined text-sm">photo_camera</span>
               </button>
             </div>
             <div>
-              <h4 class="text-xl font-bold dark:text-white">Dr. Sarah Mitchell</h4>
-              <p class="text-sm text-on-surface-variant dark:text-gray-400">Chief Surgeon & Clinical Director • NPI #984204812</p>
+              <h4 class="text-xl font-bold dark:text-white">Dr. Aryan</h4>
+              <p class="text-sm text-on-surface-variant dark:text-gray-400">Chief Surgeon & Clinical Director • NPI
+                #984204812</p>
               <div class="mt-2 flex gap-2">
-                <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs rounded-full font-medium dark:bg-blue-950 dark:text-blue-300">Admin</span>
-                <span class="px-3 py-1 bg-emerald-100 text-emerald-800 text-xs rounded-full font-medium dark:bg-emerald-950 dark:text-emerald-300">HIPAA Certified</span>
+                <span
+                  class="px-3 py-1 bg-blue-100 text-blue-800 text-xs rounded-full font-medium dark:bg-blue-950 dark:text-blue-300">Admin</span>
+                <span
+                  class="px-3 py-1 bg-emerald-100 text-emerald-800 text-xs rounded-full font-medium dark:bg-emerald-950 dark:text-emerald-300">HIPAA
+                  Certified</span>
               </div>
             </div>
           </div>
@@ -200,19 +251,26 @@
           <form onsubmit="saveProfile(event)" class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label class="block text-sm font-medium text-on-surface-variant dark:text-gray-300 mb-1">Full Name</label>
-              <input type="text" id="prof-name" value="Dr. Sarah Mitchell" class="w-full px-4 py-2.5 rounded-xl border border-outline-variant dark:border-gray-700 dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-primary"/>
+              <input type="text" id="prof-name" value="Dr. Aryan"
+                class="w-full px-4 py-2.5 rounded-xl border border-outline-variant dark:border-gray-700 dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-primary" />
             </div>
             <div>
-              <label class="block text-sm font-medium text-on-surface-variant dark:text-gray-300 mb-1">Work Email</label>
-              <input type="email" id="prof-email" value="s.mitchell@patientos.health" class="w-full px-4 py-2.5 rounded-xl border border-outline-variant dark:border-gray-700 dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-primary"/>
+              <label class="block text-sm font-medium text-on-surface-variant dark:text-gray-300 mb-1">Work
+                Email</label>
+              <input type="email" id="prof-email" value="dr.aryan@patientos.health"
+                class="w-full px-4 py-2.5 rounded-xl border border-outline-variant dark:border-gray-700 dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-primary" />
             </div>
             <div>
-              <label class="block text-sm font-medium text-on-surface-variant dark:text-gray-300 mb-1">Medical License ID</label>
-              <input type="text" value="LIC-8839201-US" class="w-full px-4 py-2.5 rounded-xl border border-outline-variant dark:border-gray-700 dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-primary"/>
+              <label class="block text-sm font-medium text-on-surface-variant dark:text-gray-300 mb-1">Medical License
+                ID</label>
+              <input type="text" value="LIC-8839201-US"
+                class="w-full px-4 py-2.5 rounded-xl border border-outline-variant dark:border-gray-700 dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-primary" />
             </div>
             <div>
-              <label class="block text-sm font-medium text-on-surface-variant dark:text-gray-300 mb-1">Primary Department</label>
-              <select class="w-full px-4 py-2.5 rounded-xl border border-outline-variant dark:border-gray-700 dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-primary">
+              <label class="block text-sm font-medium text-on-surface-variant dark:text-gray-300 mb-1">Primary
+                Department</label>
+              <select
+                class="w-full px-4 py-2.5 rounded-xl border border-outline-variant dark:border-gray-700 dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-primary">
                 <option selected>General Surgery & Emergency</option>
                 <option>Pediatrics</option>
                 <option>Cardiology</option>
@@ -220,7 +278,8 @@
               </select>
             </div>
             <div class="md:col-span-2 flex justify-end">
-              <button type="submit" class="px-6 py-2.5 bg-primary text-white rounded-xl font-medium hover:bg-primary-container transition-colors shadow-sm">
+              <button type="submit"
+                class="px-6 py-2.5 bg-primary text-white rounded-xl font-medium hover:bg-primary-container transition-colors shadow-sm">
                 Save Profile Changes
               </button>
             </div>
@@ -230,15 +289,19 @@
 
       <!-- TAB 2: APPEARANCE & DARK MODE SWITCHING -->
       <div id="tab-content-appearance" class="tab-content hidden space-y-6">
-        <div class="bg-surface dark:bg-gray-800 p-6 rounded-2xl border border-outline-variant dark:border-gray-700 shadow-sm">
+        <div
+          class="bg-surface dark:bg-gray-800 p-6 rounded-2xl border border-outline-variant dark:border-gray-700 shadow-sm">
           <h3 class="text-lg font-bold mb-4 dark:text-white flex items-center gap-2">
-            <span class="material-symbols-outlined text-primary dark:text-blue-400">dark_mode</span> Theme & Visual Settings
+            <span class="material-symbols-outlined text-primary dark:text-blue-400">dark_mode</span> Theme & Visual
+            Settings
           </h3>
-          <p class="text-sm text-on-surface-variant dark:text-gray-400 mb-6">Choose how PatientOS looks to you. Select between Light theme, Dark theme, or automatic System preferences.</p>
-          
+          <p class="text-sm text-on-surface-variant dark:text-gray-400 mb-6">Choose how PatientOS looks to you. Select
+            between Light theme, Dark theme, or automatic System preferences.</p>
+
           <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
             <!-- Light Theme Card -->
-            <div onclick="setTheme('light')" id="card-theme-light" class="cursor-pointer border-2 border-primary bg-white p-5 rounded-2xl shadow-sm hover:shadow-md transition-all">
+            <div onclick="setTheme('light')" id="card-theme-light"
+              class="cursor-pointer border-2 border-primary bg-white p-5 rounded-2xl shadow-sm hover:shadow-md transition-all">
               <div class="h-28 bg-gray-100 rounded-xl mb-4 border flex flex-col p-3 space-y-2">
                 <div class="h-4 bg-primary rounded w-1/3"></div>
                 <div class="h-3 bg-gray-300 rounded w-3/4"></div>
@@ -251,7 +314,8 @@
             </div>
 
             <!-- Dark Theme Card -->
-            <div onclick="setTheme('dark')" id="card-theme-dark" class="cursor-pointer border-2 border-transparent bg-gray-900 p-5 rounded-2xl shadow-sm hover:shadow-md transition-all text-white">
+            <div onclick="setTheme('dark')" id="card-theme-dark"
+              class="cursor-pointer border-2 border-transparent bg-gray-900 p-5 rounded-2xl shadow-sm hover:shadow-md transition-all text-white">
               <div class="h-28 bg-gray-800 rounded-xl mb-4 border border-gray-700 flex flex-col p-3 space-y-2">
                 <div class="h-4 bg-blue-500 rounded w-1/3"></div>
                 <div class="h-3 bg-gray-600 rounded w-3/4"></div>
@@ -264,13 +328,15 @@
             </div>
 
             <!-- System Auto Card -->
-            <div onclick="setTheme('system')" id="card-theme-system" class="cursor-pointer border-2 border-transparent bg-gradient-to-r from-gray-100 to-gray-800 p-5 rounded-2xl shadow-sm hover:shadow-md transition-all">
+            <div onclick="setTheme('system')" id="card-theme-system"
+              class="cursor-pointer border-2 border-transparent bg-gradient-to-r from-gray-100 to-gray-800 p-5 rounded-2xl shadow-sm hover:shadow-md transition-all">
               <div class="h-28 bg-gray-500/20 rounded-xl mb-4 border flex items-center justify-center">
                 <span class="material-symbols-outlined text-4xl text-gray-600 dark:text-gray-300">desktop_windows</span>
               </div>
               <div class="flex items-center justify-between">
                 <span class="font-bold text-gray-800 dark:text-white">System Preference</span>
-                <span id="badge-system" class="material-symbols-outlined hidden text-primary dark:text-blue-400">check_circle</span>
+                <span id="badge-system"
+                  class="material-symbols-outlined hidden text-primary dark:text-blue-400">check_circle</span>
               </div>
             </div>
           </div>
@@ -278,11 +344,14 @@
           <div class="p-4 bg-surface-container-low dark:bg-gray-900 rounded-xl flex items-center justify-between">
             <div>
               <h4 class="font-semibold text-sm dark:text-white">High Contrast UI</h4>
-              <p class="text-xs text-on-surface-variant dark:text-gray-400">Increases line contrast for low-visibility environments in operating rooms.</p>
+              <p class="text-xs text-on-surface-variant dark:text-gray-400">Increases line contrast for low-visibility
+                environments in operating rooms.</p>
             </div>
             <label class="relative inline-flex items-center cursor-pointer">
               <input type="checkbox" class="sr-only peer" onchange="showToast('High contrast mode updated')">
-              <div class="w-11 h-6 bg-gray-300 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+              <div
+                class="w-11 h-6 bg-gray-300 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary">
+              </div>
             </label>
           </div>
         </div>
@@ -290,40 +359,54 @@
 
       <!-- TAB 3: PRIVACY & SECURITY OPTIONS -->
       <div id="tab-content-privacy" class="tab-content hidden space-y-6">
-        <div class="bg-surface dark:bg-gray-800 p-6 rounded-2xl border border-outline-variant dark:border-gray-700 shadow-sm space-y-6">
+        <div
+          class="bg-surface dark:bg-gray-800 p-6 rounded-2xl border border-outline-variant dark:border-gray-700 shadow-sm space-y-6">
           <h3 class="text-lg font-bold dark:text-white flex items-center gap-2">
-            <span class="material-symbols-outlined text-primary dark:text-blue-400">shield</span> Privacy, Access & Data Security
+            <span class="material-symbols-outlined text-primary dark:text-blue-400">shield</span> Privacy, Access & Data
+            Security
           </h3>
 
           <div class="space-y-4">
-            <div class="flex items-center justify-between p-4 border border-outline-variant dark:border-gray-700 rounded-xl">
+            <div
+              class="flex items-center justify-between p-4 border border-outline-variant dark:border-gray-700 rounded-xl">
               <div>
                 <h4 class="font-semibold text-sm dark:text-white">Two-Factor Authentication (2FA)</h4>
-                <p class="text-xs text-on-surface-variant dark:text-gray-400">Require an authenticator code when signing into clinical portal.</p>
+                <p class="text-xs text-on-surface-variant dark:text-gray-400">Require an authenticator code when signing
+                  into clinical portal.</p>
               </div>
-              <span class="px-3 py-1 bg-emerald-100 text-emerald-800 text-xs font-semibold rounded-full dark:bg-emerald-950 dark:text-emerald-300">Enabled</span>
+              <span
+                class="px-3 py-1 bg-emerald-100 text-emerald-800 text-xs font-semibold rounded-full dark:bg-emerald-950 dark:text-emerald-300">Enabled</span>
             </div>
 
-            <div class="flex items-center justify-between p-4 border border-outline-variant dark:border-gray-700 rounded-xl">
+            <div
+              class="flex items-center justify-between p-4 border border-outline-variant dark:border-gray-700 rounded-xl">
               <div>
                 <h4 class="font-semibold text-sm dark:text-white">Automatic Session Timeout</h4>
-                <p class="text-xs text-on-surface-variant dark:text-gray-400">Automatically lock workstation screen after 15 minutes of inactivity (HIPAA Required).</p>
+                <p class="text-xs text-on-surface-variant dark:text-gray-400">Automatically lock workstation screen
+                  after 15 minutes of inactivity (HIPAA Required).</p>
               </div>
-              <select class="px-3 py-1.5 border rounded-lg text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white" onchange="showToast('Session timeout saved')">
+              <select
+                class="px-3 py-1.5 border rounded-lg text-sm dark:bg-gray-900 dark:border-gray-700 dark:text-white"
+                onchange="showToast('Session timeout saved')">
                 <option>5 minutes</option>
                 <option selected>15 minutes (Default)</option>
                 <option>30 minutes</option>
               </select>
             </div>
 
-            <div class="flex items-center justify-between p-4 border border-outline-variant dark:border-gray-700 rounded-xl">
+            <div
+              class="flex items-center justify-between p-4 border border-outline-variant dark:border-gray-700 rounded-xl">
               <div>
                 <h4 class="font-semibold text-sm dark:text-white">Patient Record Access Logs</h4>
-                <p class="text-xs text-on-surface-variant dark:text-gray-400">Notify me whenever another practitioner views my assigned patients.</p>
+                <p class="text-xs text-on-surface-variant dark:text-gray-400">Notify me whenever another practitioner
+                  views my assigned patients.</p>
               </div>
               <label class="relative inline-flex items-center cursor-pointer">
-                <input type="checkbox" checked class="sr-only peer" onchange="showToast('Access log notification updated')">
-                <div class="w-11 h-6 bg-gray-300 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                <input type="checkbox" checked class="sr-only peer"
+                  onchange="showToast('Access log notification updated')">
+                <div
+                  class="w-11 h-6 bg-gray-300 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary">
+                </div>
               </label>
             </div>
           </div>
@@ -332,15 +415,20 @@
 
       <!-- TAB 4: LANGUAGE & REGIONAL OPTIONS -->
       <div id="tab-content-language" class="tab-content hidden space-y-6">
-        <div class="bg-surface dark:bg-gray-800 p-6 rounded-2xl border border-outline-variant dark:border-gray-700 shadow-sm space-y-6">
+        <div
+          class="bg-surface dark:bg-gray-800 p-6 rounded-2xl border border-outline-variant dark:border-gray-700 shadow-sm space-y-6">
           <h3 class="text-lg font-bold dark:text-white flex items-center gap-2">
-            <span class="material-symbols-outlined text-primary dark:text-blue-400">translate</span> Language & Locale Preferences
+            <span class="material-symbols-outlined text-primary dark:text-blue-400">translate</span> Language & Locale
+            Preferences
           </h3>
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label class="block text-sm font-medium text-on-surface-variant dark:text-gray-300 mb-2">Display Language</label>
-              <select class="w-full px-4 py-2.5 rounded-xl border border-outline-variant dark:border-gray-700 dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-primary" onchange="showToast('Language preference updated')">
+              <label class="block text-sm font-medium text-on-surface-variant dark:text-gray-300 mb-2">Display
+                Language</label>
+              <select
+                class="w-full px-4 py-2.5 rounded-xl border border-outline-variant dark:border-gray-700 dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-primary"
+                onchange="showToast('Language preference updated')">
                 <option selected>English (United States)</option>
                 <option>Spanish (Español)</option>
                 <option>French (Français)</option>
@@ -351,8 +439,11 @@
             </div>
 
             <div>
-              <label class="block text-sm font-medium text-on-surface-variant dark:text-gray-300 mb-2">Clinical Date & Time Format</label>
-              <select class="w-full px-4 py-2.5 rounded-xl border border-outline-variant dark:border-gray-700 dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-primary" onchange="showToast('Date format updated')">
+              <label class="block text-sm font-medium text-on-surface-variant dark:text-gray-300 mb-2">Clinical Date &
+                Time Format</label>
+              <select
+                class="w-full px-4 py-2.5 rounded-xl border border-outline-variant dark:border-gray-700 dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-primary"
+                onchange="showToast('Date format updated')">
                 <option selected>MM/DD/YYYY (12-hour: 02:30 PM)</option>
                 <option>DD/MM/YYYY (24-hour: 14:30)</option>
                 <option>YYYY-MM-DD (ISO standard)</option>
@@ -361,7 +452,9 @@
 
             <div>
               <label class="block text-sm font-medium text-on-surface-variant dark:text-gray-300 mb-2">Time Zone</label>
-              <select class="w-full px-4 py-2.5 rounded-xl border border-outline-variant dark:border-gray-700 dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-primary" onchange="showToast('Time zone saved')">
+              <select
+                class="w-full px-4 py-2.5 rounded-xl border border-outline-variant dark:border-gray-700 dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-primary"
+                onchange="showToast('Time zone saved')">
                 <option selected>Eastern Standard Time (EST - UTC-5)</option>
                 <option>Pacific Standard Time (PST - UTC-8)</option>
                 <option>Central European Time (CET - UTC+1)</option>
@@ -370,8 +463,10 @@
             </div>
 
             <div>
-              <label class="block text-sm font-medium text-on-surface-variant dark:text-gray-300 mb-2">Currency Symbol</label>
-              <select class="w-full px-4 py-2.5 rounded-xl border border-outline-variant dark:border-gray-700 dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-primary">
+              <label class="block text-sm font-medium text-on-surface-variant dark:text-gray-300 mb-2">Currency
+                Symbol</label>
+              <select
+                class="w-full px-4 py-2.5 rounded-xl border border-outline-variant dark:border-gray-700 dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-primary">
                 <option selected>USD ($)</option>
                 <option>EUR (€)</option>
                 <option>GBP (£)</option>
@@ -384,55 +479,71 @@
 
       <!-- TAB 5: HELP & SUPPORT OPTION -->
       <div id="tab-content-help" class="tab-content hidden space-y-6">
-        <div class="bg-surface dark:bg-gray-800 p-6 rounded-2xl border border-outline-variant dark:border-gray-700 shadow-sm space-y-6">
+        <div
+          class="bg-surface dark:bg-gray-800 p-6 rounded-2xl border border-outline-variant dark:border-gray-700 shadow-sm space-y-6">
           <h3 class="text-lg font-bold dark:text-white flex items-center gap-2">
-            <span class="material-symbols-outlined text-primary dark:text-blue-400">help_center</span> Help Desk & Support Knowledge Base
+            <span class="material-symbols-outlined text-primary dark:text-blue-400">help_center</span> Help Desk &
+            Support Knowledge Base
           </h3>
 
           <div class="relative">
             <span class="material-symbols-outlined absolute left-4 top-3 text-gray-400">search</span>
-            <input type="text" placeholder="Search support articles, user guides, HIPAA guidelines..." class="w-full pl-12 pr-4 py-3 rounded-xl border border-outline-variant dark:border-gray-700 dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-primary"/>
+            <input type="text" placeholder="Search support articles, user guides, HIPAA guidelines..."
+              class="w-full pl-12 pr-4 py-3 rounded-xl border border-outline-variant dark:border-gray-700 dark:bg-gray-900 dark:text-white focus:ring-2 focus:ring-primary" />
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="p-5 border border-outline-variant dark:border-gray-700 rounded-xl hover:border-primary transition-colors cursor-pointer">
+            <div
+              class="p-5 border border-outline-variant dark:border-gray-700 rounded-xl hover:border-primary transition-colors cursor-pointer">
               <span class="material-symbols-outlined text-3xl text-primary mb-2">menu_book</span>
               <h4 class="font-bold dark:text-white">User Manual & Guides</h4>
-              <p class="text-xs text-on-surface-variant dark:text-gray-400 mt-1">Detailed documentation for doctors, nurses, and administrative billing staff.</p>
+              <p class="text-xs text-on-surface-variant dark:text-gray-400 mt-1">Detailed documentation for doctors,
+                nurses, and administrative billing staff.</p>
             </div>
 
-            <div class="p-5 border border-outline-variant dark:border-gray-700 rounded-xl hover:border-primary transition-colors cursor-pointer" onclick="alert('Connecting to 24/7 Clinical IT Helpdesk hotline...')">
+            <div
+              class="p-5 border border-outline-variant dark:border-gray-700 rounded-xl hover:border-primary transition-colors cursor-pointer"
+              onclick="alert('Connecting to 24/7 Clinical IT Helpdesk hotline...')">
               <span class="material-symbols-outlined text-3xl text-emerald-600 mb-2">support_agent</span>
               <h4 class="font-bold dark:text-white">24/7 Live Support Desk</h4>
-              <p class="text-xs text-on-surface-variant dark:text-gray-400 mt-1">Connect directly with hospital IT administrator or system engineer.</p>
+              <p class="text-xs text-on-surface-variant dark:text-gray-400 mt-1">Connect directly with hospital IT
+                administrator or system engineer.</p>
             </div>
 
-            <div class="p-5 border border-outline-variant dark:border-gray-700 rounded-xl hover:border-primary transition-colors cursor-pointer">
+            <div
+              class="p-5 border border-outline-variant dark:border-gray-700 rounded-xl hover:border-primary transition-colors cursor-pointer">
               <span class="material-symbols-outlined text-3xl text-purple-600 mb-2">bug_report</span>
               <h4 class="font-bold dark:text-white">Report System Issue</h4>
-              <p class="text-xs text-on-surface-variant dark:text-gray-400 mt-1">Submit a bug report or request a new feature enhancement.</p>
+              <p class="text-xs text-on-surface-variant dark:text-gray-400 mt-1">Submit a bug report or request a new
+                feature enhancement.</p>
             </div>
           </div>
 
           <!-- FAQ Accordion -->
           <div class="space-y-3 pt-4 border-t border-outline-variant dark:border-gray-700">
-            <h4 class="font-bold text-sm uppercase tracking-wider text-on-surface-variant dark:text-gray-400">Frequently Asked Questions</h4>
-            
-            <details class="p-4 border border-outline-variant dark:border-gray-700 rounded-xl bg-surface-container-low dark:bg-gray-900 cursor-pointer">
+            <h4 class="font-bold text-sm uppercase tracking-wider text-on-surface-variant dark:text-gray-400">Frequently
+              Asked Questions</h4>
+
+            <details
+              class="p-4 border border-outline-variant dark:border-gray-700 rounded-xl bg-surface-container-low dark:bg-gray-900 cursor-pointer">
               <summary class="font-semibold text-sm dark:text-white flex items-center justify-between">
                 <span>How do I discharge a patient and allocate their bed to another incoming emergency?</span>
               </summary>
               <p class="mt-3 text-xs text-on-surface-variant dark:text-gray-400 leading-relaxed">
-                Navigate to the <a href="bed_management.html" class="text-primary underline">Bed Management</a> tab, locate the assigned bed card, click "Change Status", select "Discharged / Cleaning Needed", and click Save. The bed will automatically refresh in the availability pool.
+                Navigate to the <a href="bed_management.html" class="text-primary underline">Bed Management</a> tab,
+                locate the assigned bed card, click "Change Status", select "Discharged / Cleaning Needed", and click
+                Save. The bed will automatically refresh in the availability pool.
               </p>
             </details>
 
-            <details class="p-4 border border-outline-variant dark:border-gray-700 rounded-xl bg-surface-container-low dark:bg-gray-900 cursor-pointer">
+            <details
+              class="p-4 border border-outline-variant dark:border-gray-700 rounded-xl bg-surface-container-low dark:bg-gray-900 cursor-pointer">
               <summary class="font-semibold text-sm dark:text-white flex items-center justify-between">
                 <span>Where can I export HIPAA security audit logs for compliance review?</span>
               </summary>
               <p class="mt-3 text-xs text-on-surface-variant dark:text-gray-400 leading-relaxed">
-                Go to <a href="audit_logs.html" class="text-primary underline">Audit & Compliance</a>, filter by date range or severity, and click the "Export CSV Log" button in the top right corner.
+                Go to <a href="audit_logs.html" class="text-primary underline">Audit & Compliance</a>, filter by date
+                range or severity, and click the "Export CSV Log" button in the top right corner.
               </p>
             </details>
           </div>
@@ -507,4 +618,5 @@
     updateThemeBadges(localStorage.getItem('theme') || 'system');
   </script>
 </body>
+
 </html>

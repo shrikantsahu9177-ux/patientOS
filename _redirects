@@ -1,0 +1,2 @@
+# Netlify Redirects File for SPA / Multi-page routing
+/ /pages/login.html 302
